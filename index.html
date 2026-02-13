@@ -18,12 +18,27 @@ html, body {
     text-align: center;
 }
 
-/* Texto */
+/* Texto Corregido con Estilo Romántico-Tecnológico */
 .message {
     position: absolute;
-    top: 18%;
+    top: 15%; /* Ajustado para dar espacio al jardín */
     width: 100%;
-    z-index: 200; /* Subido para que siempre esté por encima del jardín */
+    z-index: 200;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.message h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 15px rgba(76, 201, 240, 0.9), 0 0 30px rgba(76, 201, 240, 0.4);
+}
+
+.message p {
+    font-size: 1.3rem;
+    font-weight: 300;
+    opacity: 0.9;
+    text-shadow: 0 0 10px rgba(76, 201, 240, 0.8);
 }
 
 /* Corazones */
@@ -174,8 +189,8 @@ html, body {
 <body>
 
 <div class="message">
-    <h1>Te amo con mi vida entera, feliz san valentín 💙</h1>
-    <p>Para ti 💙</p>
+    <h1>Ni con mil estrellas ni con cien flores podría renderizar lo que siento por ti.</h1>
+    <p>Eres mi constante favorita en un universo lleno de variables. 💙</p>
 </div>
 
 <div class="cursor-glow" id="glow"></div>
@@ -236,7 +251,6 @@ for (let i = 0; i < 100; i++) {
     flower.className = "flower";
     
     const posX = Math.random() * 100;
-    // Escala variada para profundidad (0.3 lejos, 1.1 cerca)
     const scale = 0.3 + Math.random() * 0.8;
     const color = blueTones[Math.floor(Math.random() * blueTones.length)];
     const growDelay = Math.random() * 4; 
@@ -244,11 +258,8 @@ for (let i = 0; i < 100; i++) {
 
     flower.style.left = `${posX}%`;
     flower.style.setProperty('--scale', scale);
-    
-    // Las flores más grandes (más cerca) tienen mayor z-index
     flower.style.zIndex = Math.floor(scale * 100);
     
-    // Las flores más lejanas (pequeñas) son un poco más oscuras para mayor realismo
     const brightness = 0.6 + (scale * 0.4);
     flower.style.filter = `brightness(${brightness})`;
 
