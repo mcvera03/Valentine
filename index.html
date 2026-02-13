@@ -26,7 +26,7 @@ html, body {
     z-index: 10;
 }
 
-/* Corazones flotando */
+/* Corazones */
 .heart {
     position: absolute;
     font-size: 22px;
@@ -45,7 +45,7 @@ html, body {
     100% { transform: scale(0); opacity: 0; }
 }
 
-/* Estrellas normales */
+/* Estrellas */
 .star {
     position: absolute;
     width: 3px;
@@ -61,7 +61,7 @@ html, body {
     to { opacity: 1; }
 }
 
-/* 🌠 Estrella fugaz */
+/* Estrella fugaz */
 .shooting-star {
     position: absolute;
     width: 2px;
@@ -73,37 +73,30 @@ html, body {
 }
 
 @keyframes shoot {
-    0% {
-        top: -10%;
-        left: 110%;
-        opacity: 0;
-    }
+    0% { top: -10%; left: 110%; opacity: 0; }
     10% { opacity: 1; }
-    50% {
-        top: 60%;
-        left: -10%;
-        opacity: 0;
-    }
+    50% { top: 60%; left: -10%; opacity: 0; }
     100% { opacity: 0; }
 }
 
-/* 🌸 Jardín arreglado */
+/* Jardín ramo */
 .garden {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 220px; /* MÁS espacio */
+    height: 280px;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    gap: 120px;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-/* Flor completa */
+/* Flor */
 .flower {
     position: relative;
     width: 60px;
-    height: 180px; /* altura real incluyendo tallo */
+    height: 200px;
     animation: sway 4s ease-in-out infinite alternate;
 }
 
@@ -138,6 +131,27 @@ html, body {
     top: 60px;
     left: 50%;
     transform: translateX(-50%);
+}
+
+/* Hojas */
+.leaf {
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    background: #2d6a4f;
+    border-radius: 50%;
+}
+
+.leaf-left {
+    top: 100px;
+    left: -20px;
+    transform: rotate(-30deg);
+}
+
+.leaf-right {
+    top: 120px;
+    right: -20px;
+    transform: rotate(30deg);
 }
 
 @keyframes sway {
@@ -181,30 +195,12 @@ html, body {
 <div class="shooting-star" style="animation-delay:0s;"></div>
 <div class="shooting-star" style="animation-delay:3s;"></div>
 
-<!-- 🌸 Flores completas -->
-<div class="garden">
-    <div class="flower">
-        <div class="petal p1"></div>
-        <div class="petal p2"></div>
-        <div class="petal p3"></div>
-        <div class="petal p4"></div>
-        <div class="center"></div>
-        <div class="stem"></div>
-    </div>
-
-    <div class="flower" style="animation-duration:5s;">
-        <div class="petal p1"></div>
-        <div class="petal p2"></div>
-        <div class="petal p3"></div>
-        <div class="petal p4"></div>
-        <div class="center"></div>
-        <div class="stem"></div>
-    </div>
-</div>
+<!-- Ramo de 12 flores -->
+<div class="garden" id="garden"></div>
 
 <script>
 
-/* Brillo que sigue dedo */
+/* Brillo */
 const glow = document.getElementById("glow");
 
 document.addEventListener("mousemove", e => {
@@ -217,7 +213,7 @@ document.addEventListener("touchmove", e => {
     glow.style.top = e.touches[0].clientY + "px";
 });
 
-/* Crear estrellas */
+/* Estrellas */
 for (let i = 0; i < 80; i++) {
     let star = document.createElement("div");
     star.className = "star";
@@ -236,6 +232,26 @@ document.querySelectorAll(".heart").forEach(heart => {
         }, 600);
     });
 });
+
+/* Crear 12 flores */
+const garden = document.getElementById("garden");
+
+for (let i = 0; i < 12; i++) {
+    let flower = document.createElement("div");
+    flower.className = "flower";
+    flower.style.animationDuration = (3 + Math.random()*3) + "s";
+    flower.innerHTML = `
+        <div class="petal p1"></div>
+        <div class="petal p2"></div>
+        <div class="petal p3"></div>
+        <div class="petal p4"></div>
+        <div class="center"></div>
+        <div class="stem"></div>
+        <div class="leaf leaf-left"></div>
+        <div class="leaf leaf-right"></div>
+    `;
+    garden.appendChild(flower);
+}
 
 </script>
 
