@@ -9,35 +9,35 @@
 body {
     margin: 0;
     overflow: hidden;
-    background: radial-gradient(circle at center, #0d1b2a, #000814);
+    background: radial-gradient(circle at center, #0d1b2a 0%, #000814 70%);
     font-family: Arial, sans-serif;
     color: white;
     text-align: center;
 }
 
-/* Texto */
+/* Mensaje */
 .message {
     position: absolute;
-    top: 20%;
+    top: 18%;
     width: 100%;
+    z-index: 2;
 }
 
 .message h1 {
     font-weight: 300;
-    font-size: 32px;
+    font-size: 34px;
 }
 
 .message p {
-    font-size: 20px;
+    font-size: 22px;
     margin-top: 10px;
 }
 
-/* Corazones flotando */
+/* Corazones */
 .heart {
     position: absolute;
-    color: #4cc9f0;
-    font-size: 20px;
-    animation: float 10s linear infinite;
+    font-size: 22px;
+    animation: float 12s linear infinite;
 }
 
 @keyframes float {
@@ -58,58 +58,59 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 80px;
+    gap: 90px;
 }
 
 /* Flor */
 .flower {
     position: relative;
-    width: 40px;
-    height: 40px;
-    animation: sway 3s ease-in-out infinite alternate;
+    width: 60px;
+    height: 60px;
+    animation: sway 4s ease-in-out infinite alternate;
 }
 
 /* Centro */
-.flower .center {
-    width: 40px;
-    height: 40px;
-    background: #3a86ff;
+.center {
+    width: 30px;
+    height: 30px;
+    background: #1d4ed8;
     border-radius: 50%;
     position: absolute;
+    top: 15px;
+    left: 15px;
     z-index: 2;
 }
 
 /* Pétalos */
-.flower .petal {
-    width: 40px;
-    height: 40px;
+.petal {
+    width: 45px;
+    height: 45px;
     background: #4cc9f0;
     border-radius: 50%;
     position: absolute;
 }
 
-.p1 { top: -20px; left: 0; }
-.p2 { bottom: -20px; left: 0; }
-.p3 { left: -20px; top: 0; }
-.p4 { right: -20px; top: 0; }
+.p1 { top: 0; left: 7px; }
+.p2 { bottom: 0; left: 7px; }
+.p3 { left: 0; top: 7px; }
+.p4 { right: 0; top: 7px; }
 
 /* Tallo */
 .stem {
-    width: 4px;
-    height: 100px;
-    background: #52b788;
+    width: 5px;
+    height: 120px;
+    background: #38b000;
     position: absolute;
-    bottom: -100px;
+    bottom: -120px;
     left: 50%;
     transform: translateX(-50%);
 }
 
-/* Movimiento */
+/* Movimiento suave */
 @keyframes sway {
-    0% { transform: rotate(-4deg); }
-    100% { transform: rotate(4deg); }
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
 }
-
 </style>
 </head>
 
@@ -121,60 +122,60 @@ body {
 </div>
 
 <!-- Corazones -->
-<div class="heart" style="left:10%; animation-duration:8s;">💙</div>
-<div class="heart" style="left:25%; animation-duration:12s;">💙</div>
-<div class="heart" style="left:40%; animation-duration:10s;">💙</div>
-<div class="heart" style="left:60%; animation-duration:14s;">💙</div>
-<div class="heart" style="left:75%; animation-duration:9s;">💙</div>
-<div class="heart" style="left:90%; animation-duration:11s;">💙</div>
+<div class="heart" style="left:10%; animation-duration:9s;">💙</div>
+<div class="heart" style="left:25%; animation-duration:13s;">💙</div>
+<div class="heart" style="left:40%; animation-duration:11s;">💙</div>
+<div class="heart" style="left:60%; animation-duration:15s;">💙</div>
+<div class="heart" style="left:75%; animation-duration:10s;">💙</div>
+<div class="heart" style="left:90%; animation-duration:12s;">💙</div>
 
-<!-- Jardín -->
+<!-- Flores -->
 <div class="garden">
 
-    <div class="flower">
-        <div class="petal p1"></div>
-        <div class="petal p2"></div>
-        <div class="petal p3"></div>
-        <div class="petal p4"></div>
-        <div class="center"></div>
-        <div class="stem"></div>
-    </div>
+<div class="flower">
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="center"></div>
+    <div class="stem"></div>
+</div>
 
-    <div class="flower">
-        <div class="petal p1"></div>
-        <div class="petal p2"></div>
-        <div class="petal p3"></div>
-        <div class="petal p4"></div>
-        <div class="center"></div>
-        <div class="stem"></div>
-    </div>
+<div class="flower" style="animation-duration:5s;">
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="center"></div>
+    <div class="stem"></div>
+</div>
 
-    <div class="flower">
-        <div class="petal p1"></div>
-        <div class="petal p2"></div>
-        <div class="petal p3"></div>
-        <div class="petal p4"></div>
-        <div class="center"></div>
-        <div class="stem"></div>
-    </div>
+<div class="flower" style="animation-duration:3.5s;">
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="center"></div>
+    <div class="stem"></div>
+</div>
 
-    <div class="flower">
-        <div class="petal p1"></div>
-        <div class="petal p2"></div>
-        <div class="petal p3"></div>
-        <div class="petal p4"></div>
-        <div class="center"></div>
-        <div class="stem"></div>
-    </div>
+<div class="flower" style="animation-duration:4.5s;">
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="center"></div>
+    <div class="stem"></div>
+</div>
 
-    <div class="flower">
-        <div class="petal p1"></div>
-        <div class="petal p2"></div>
-        <div class="petal p3"></div>
-        <div class="petal p4"></div>
-        <div class="center"></div>
-        <div class="stem"></div>
-    </div>
+<div class="flower" style="animation-duration:6s;">
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="center"></div>
+    <div class="stem"></div>
+</div>
 
 </div>
 
