@@ -7,223 +7,201 @@
     <link rel="icon" href="https://fav.farm/💙" />
     <style>
         :root {
-            --bg-color: #030712;
-            --flower-blue: #00d2ff;
+            --bg-dark: #030712;
+            --blue-flower: #4facfe;
+            --blue-light: #00f2fe;
             --stem-green: #1a4d2e;
-            --leaf-green: #2d6a4f;
+            --heart-blue: rgba(0, 210, 255, 0.7);
         }
 
         body {
             margin: 0;
-            padding: 0;
+            overflow: hidden;
             background: radial-gradient(circle at center, #0a192f 0%, #030712 100%);
             height: 100vh;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            overflow: hidden;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            justify-content: center;
+            align-items: flex-end;
+            font-family: 'Arial', sans-serif;
         }
 
-        /* Mensaje de San Valentín */
+        /* Mensaje Superior */
         .message {
             position: absolute;
-            top: 15%;
-            width: 80%;
+            top: 10%;
             text-align: center;
-            color: #e0f2fe;
-            font-size: 1.8rem;
-            font-weight: 300;
-            letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
-            animation: fadeIn 4s ease-in-out;
-            z-index: 10;
+            color: white;
+            z-index: 100;
+            animation: fadeIn 3s ease-in;
         }
 
-        .garden {
+        .message h1 {
+            font-weight: 300;
+            font-size: 1.5rem;
+            text-shadow: 0 0 15px var(--blue-light);
+            margin: 0;
+        }
+
+        /* Contenedor del Ramo */
+        .bouquet {
             position: relative;
             display: flex;
+            justify-content: center;
             align-items: flex-end;
-            gap: 40px;
-            padding-bottom: 20px;
+            margin-bottom: -20px;
         }
 
         /* Estructura de la Flor */
-        .flower-group {
-            position: relative;
+        .flower {
+            position: absolute;
+            bottom: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             transform-origin: bottom center;
-            animation: windSway 5s ease-in-out infinite alternate;
+            animation: sway 5s ease-in-out infinite alternate;
         }
 
-        /* Tallos y Hojas (Estilo imagen original) */
         .stem {
-            width: 6px;
-            height: 220px;
+            width: 5px;
             background: linear-gradient(to top, #0d2818, var(--stem-green));
             border-radius: 10px;
             position: relative;
         }
 
-        /* Hojas laterales redondeadas */
+        /* Hojas del tallo */
         .leaf {
             position: absolute;
-            width: 30px;
-            height: 15px;
-            background: var(--leaf-green);
+            width: 25px;
+            height: 12px;
+            background: #2d6a4f;
             border-radius: 50px 0 50px 0;
-            left: 6px;
         }
+        .leaf.left { left: -25px; transform: rotate(-30deg); border-radius: 0 50px 0 50px; }
+        .leaf.right { right: -25px; transform: rotate(30deg); }
 
-        .leaf.left {
-            left: -30px;
-            border-radius: 0 50px 0 50px;
-            transform: rotate(-20deg);
-        }
-
-        .leaf.right {
-            transform: rotate(20deg);
-        }
-
-        /* Posicionamiento de hojas a lo largo del tallo */
-        .leaf-1 { bottom: 40px; }
-        .leaf-2 { bottom: 80px; }
-        .leaf-3 { bottom: 120px; }
-
-        /* Pétalos Azules con Brillo */
-        .petals-container {
+        /* Pétalos y Centro */
+        .flower-head {
             position: relative;
-            width: 40px;
-            height: 40px;
-            margin-bottom: -5px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: -15px;
         }
 
         .petal {
             position: absolute;
+            background: var(--blue-flower);
             width: 45px;
             height: 45px;
-            background: var(--flower-blue);
             border-radius: 50% 50% 10% 50%;
-            opacity: 0.9;
-            box-shadow: 0 0 25px rgba(0, 210, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
         }
 
-        /* Colocación circular de pétalos */
-        .p1 { transform: rotate(0deg) translate(22px, 22px); }
-        .p2 { transform: rotate(72deg) translate(22px, 22px); }
-        .p3 { transform: rotate(144deg) translate(22px, 22px); }
-        .p4 { transform: rotate(216deg) translate(22px, 22px); }
-        .p5 { transform: rotate(288deg) translate(22px, 22px); }
+        /* Posiciones pétalos */
+        .p1 { transform: rotate(0deg) translate(20px, 20px); }
+        .p2 { transform: rotate(72deg) translate(20px, 20px); }
+        .p3 { transform: rotate(144deg) translate(20px, 20px); }
+        .p4 { transform: rotate(216deg) translate(20px, 20px); }
+        .p5 { transform: rotate(288deg) translate(20px, 20px); }
 
-        .center-dot {
+        .center {
             position: absolute;
-            width: 25px;
-            height: 25px;
-            background: #fff9c4;
+            width: 22px;
+            height: 22px;
+            background: #fff59d;
             border-radius: 50%;
-            top: 32px;
-            left: 32px;
-            z-index: 5;
-            box-shadow: 0 0 15px white;
+            z-index: 10;
+            box-shadow: 0 0 15px #fff;
+            border: 2px solid #f9a825;
         }
 
-        /* Animación de balanceo suave */
-        @keyframes windSway {
-            0% { transform: rotate(-2deg); }
-            100% { transform: rotate(4deg); }
+        /* Corazones Azules Flotantes */
+        .heart {
+            position: absolute;
+            color: var(--heart-blue);
+            pointer-events: none;
+            z-index: 1;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+        }
+
+        @keyframes sway {
+            0% { transform: rotate(-3deg); }
+            100% { transform: rotate(3deg); }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; filter: blur(10px); }
-            to { opacity: 1; filter: blur(0); }
-        }
-
-        /* Mini partículas de luz (Luciérnagas) */
-        .firefly {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #fff;
-            animation: fly 10s linear infinite;
-        }
-
-        @keyframes fly {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
     <div class="message">
-        te amo con mi vida entera, feliz san valentin
+        <h1>te amo con mi vida entera, feliz san valentin</h1>
     </div>
 
-    <div class="garden">
-        <div class="flower-group" style="animation-delay: -1s;">
-            <div class="petals-container">
-                <div class="petal p1"></div><div class="petal p2"></div>
-                <div class="petal p3"></div><div class="petal p4"></div>
-                <div class="petal p5"></div><div class="center-dot"></div>
-            </div>
-            <div class="stem">
-                <div class="leaf left leaf-1"></div>
-                <div class="leaf right leaf-2"></div>
-                <div class="leaf left leaf-3"></div>
-            </div>
+    <div class="bouquet" id="bouquet">
         </div>
-
-        <div class="flower-group" style="animation-delay: 0s;">
-            <div class="petals-container">
-                <div class="petal p1" style="background: #e0f2fe;"></div>
-                <div class="petal p2" style="background: #e0f2fe;"></div>
-                <div class="petal p3" style="background: #e0f2fe;"></div>
-                <div class="petal p4" style="background: #e0f2fe;"></div>
-                <div class="petal p5" style="background: #e0f2fe;"></div>
-                <div class="center-dot"></div>
-            </div>
-            <div class="stem" style="height: 280px;">
-                <div class="leaf left leaf-1"></div>
-                <div class="leaf right leaf-2"></div>
-                <div class="leaf left leaf-3"></div>
-            </div>
-        </div>
-
-        <div class="flower-group" style="animation-delay: -2s;">
-            <div class="petals-container">
-                <div class="petal p1"></div><div class="petal p2"></div>
-                <div class="petal p3"></div><div class="petal p4"></div>
-                <div class="petal p5"></div><div class="center-dot"></div>
-            </div>
-            <div class="stem">
-                <div class="leaf right leaf-1"></div>
-                <div class="leaf left leaf-2"></div>
-                <div class="leaf right leaf-3"></div>
-            </div>
-        </div>
-    </div>
 
     <script>
-        // Crear luciérnagas mágicas
-        function createFirefly() {
-            const firefly = document.createElement('div');
-            firefly.className = 'firefly';
-            firefly.style.left = Math.random() * 100 + 'vw';
-            firefly.style.bottom = '0';
-            firefly.style.animationDuration = (Math.random() * 5 + 5) + 's';
-            firefly.style.opacity = Math.random();
-            document.body.appendChild(firefly);
+        const bouquet = document.getElementById('bouquet');
+        const flowerCount = 12; // Cantidad de flores para el ramo
 
-            setTimeout(() => { firefly.remove(); }, 10000);
+        for (let i = 0; i < flowerCount; i++) {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            
+            // Variar tamaños y posiciones para efecto de ramo
+            const height = 180 + Math.random() * 150;
+            const angle = (i - flowerCount/2) * 8; // Abre el ramo
+            const delay = Math.random() * -5;
+            const size = 0.6 + Math.random() * 0.6;
+
+            flower.style.height = `${height}px`;
+            flower.style.transform = `rotate(${angle}deg)`;
+            flower.style.animationDelay = `${delay}s`;
+            flower.style.zIndex = Math.floor(height);
+
+            flower.innerHTML = `
+                <div class="flower-head" style="transform: scale(${size})">
+                    <div class="petal p1"></div>
+                    <div class="petal p2"></div>
+                    <div class="petal p3"></div>
+                    <div class="petal p4"></div>
+                    <div class="petal p5"></div>
+                    <div class="center"></div>
+                </div>
+                <div class="stem" style="height: ${height}px">
+                    <div class="leaf left" style="bottom: 20%"></div>
+                    <div class="leaf right" style="bottom: 40%"></div>
+                </div>
+            `;
+            bouquet.appendChild(flower);
         }
-        setInterval(createFirefly, 300);
-    </script>
 
+        // Crear corazones azules
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💙';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.bottom = '-5vh';
+            heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 8000);
+        }
+        setInterval(createHeart, 250);
+    </script>
 </body>
 </html>
