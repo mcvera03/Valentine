@@ -1,207 +1,269 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz San Valentín 💙</title>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            background: radial-gradient(circle at center, #0d1b2a 0%, #000814 70%);
-            font-family: 'Segoe UI', Arial, sans-serif;
-            color: white;
-            text-align: center;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz San Valentín 💙</title>
 
-        /* Texto */
-        .message {
-            position: absolute;
-            top: 12%;
-            width: 100%;
-            z-index: 10;
-            text-shadow: 0 0 15px rgba(76, 201, 240, 0.8);
-        }
+<style>
 
-        /* Corazones flotantes */
-        .heart {
-            position: absolute;
-            font-size: 22px;
-            animation: float linear infinite;
-            cursor: pointer;
-            z-index: 5;
-        }
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #0d1b2a 0%, #000814 70%);
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+}
 
-        @keyframes float {
-            from { transform: translateY(110vh); opacity: 1; }
-            to { transform: translateY(-10vh); opacity: 0; }
-        }
+/* Texto */
+.message {
+    position: absolute;
+    top: 18%;
+    width: 100%;
+    z-index: 10;
+}
 
-        /* Estrellas de fondo */
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #4cc9f0;
-            border-radius: 50%;
-            animation: twinkle 3s infinite alternate;
-        }
+/* Corazones */
+.heart {
+    position: absolute;
+    font-size: 22px;
+    animation: float linear infinite;
+    cursor: pointer;
+}
 
-        @keyframes twinkle { from { opacity: 0.2; } to { opacity: 1; } }
+@keyframes float {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
+}
 
-        /* Contenedor del Ramo */
-        .bouquet-wrapper {
-            position: absolute;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
+@keyframes explode {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(2); opacity: 1; }
+    100% { transform: scale(0); opacity: 0; }
+}
 
-        .flower {
-            position: absolute;
-            bottom: 0;
-            transform-origin: bottom center;
-            transition: all 0.5s ease;
-        }
+/* Estrellas */
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #4cc9f0;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #4cc9f0;
+    animation: twinkle 3s infinite alternate;
+}
 
-        /* Estética de la Flor */
-        .petal {
-            width: 40px;
-            height: 40px;
-            background: #4cc9f0;
-            border-radius: 50% 50% 10% 50%; /* Forma más orgánica */
-            position: absolute;
-            filter: drop-shadow(0 0 5px rgba(76, 201, 240, 0.5));
-        }
+@keyframes twinkle {
+    from { opacity: 0.2; }
+    to { opacity: 1; }
+}
 
-        /* Posicionamiento de pétalos para una flor más llena */
-        .p1 { transform: rotate(0deg) translateY(-20px); }
-        .p2 { transform: rotate(72deg) translateY(-20px); }
-        .p3 { transform: rotate(144deg) translateY(-20px); }
-        .p4 { transform: rotate(216deg) translateY(-20px); }
-        .p5 { transform: rotate(288deg) translateY(-20px); }
+/* Estrella fugaz */
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(-45deg, white, rgba(255,255,255,0));
+    opacity: 0;
+    transform: rotate(45deg);
+    animation: shoot 6s linear infinite;
+}
 
-        .center {
-            width: 25px;
-            height: 25px;
-            background: #1d4ed8;
-            border-radius: 50%;
-            position: absolute;
-            top: -12px;
-            left: 10px;
-            z-index: 2;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
-        }
+@keyframes shoot {
+    0% { top: -10%; left: 110%; opacity: 0; }
+    10% { opacity: 1; }
+    50% { top: 60%; left: -10%; opacity: 0; }
+    100% { opacity: 0; }
+}
 
-        .stem {
-            width: 4px;
-            height: 250px;
-            background: linear-gradient(to bottom, #38b000, #1b4332);
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            border-radius: 2px;
-        }
+/* Jardín */
+.garden {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+}
 
-        .leaf {
-            position: absolute;
-            width: 25px;
-            height: 12px;
-            background: #2d6a4f;
-            border-radius: 50% 0 50% 0;
-        }
-        .leaf-left { top: 120px; left: -15px; transform: rotate(-35deg); }
-        .leaf-right { top: 140px; right: -15px; transform: rotate(35deg); }
+/* Flor */
+.flower {
+    position: relative;
+    width: 60px;
+    height: 200px;
+    animation: sway 4s ease-in-out infinite alternate;
+    transform-origin: bottom center; /* Crucial para que crezcan desde el suelo */
+}
 
-        /* Brillo del cursor */
-        .cursor-glow {
-            position: fixed;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            pointer-events: none;
-            background: radial-gradient(circle, rgba(76,201,240,0.2) 0%, rgba(29,78,216,0) 70%);
-            transform: translate(-50%, -50%);
-            z-index: 1;
-        }
-    </style>
+.petal {
+    width: 45px;
+    height: 45px;
+    background: #4cc9f0;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.p1 { top: 0; left: 7px; }
+.p2 { top: 35px; left: 7px; }
+.p3 { top: 17px; left: -15px; }
+.p4 { top: 17px; right: -15px; }
+
+.center {
+    width: 30px;
+    height: 30px;
+    background: #1d4ed8;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 15px;
+}
+
+.stem {
+    width: 5px;
+    height: 120px;
+    background: #38b000;
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Hojas */
+.leaf {
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    background: #2d6a4f;
+    border-radius: 50%;
+}
+
+.leaf-left {
+    top: 100px;
+    left: -20px;
+    transform: rotate(-30deg);
+}
+
+.leaf-right {
+    top: 120px;
+    right: -20px;
+    transform: rotate(30deg);
+}
+
+@keyframes sway {
+    0% { transform: rotate(-4deg); }
+    100% { transform: rotate(4deg); }
+}
+
+/* Brillo dedo */
+.cursor-glow {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(76,201,240,0.6) 0%, rgba(29,78,216,0) 70%);
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+</style>
 </head>
+
 <body>
 
 <div class="message">
     <h1>Te amo con mi vida entera, feliz san valentín 💙</h1>
-    <p>Un ramo eterno para ti 💙</p>
+    <p>Para ti 💙</p>
 </div>
 
 <div class="cursor-glow" id="glow"></div>
 
-<div class="bouquet-wrapper" id="garden">
-    </div>
+<div class="heart" style="left:10%; animation-duration:9s;">💙</div>
+<div class="heart" style="left:25%; animation-duration:13s;">💙</div>
+<div class="heart" style="left:40%; animation-duration:11s;">💙</div>
+<div class="heart" style="left:60%; animation-duration:15s;">💙</div>
+<div class="heart" style="left:75%; animation-duration:10s;">💙</div>
+<div class="heart" style="left:90%; animation-duration:12s;">💙</div>
+
+<div class="shooting-star" style="animation-delay:0s;"></div>
+<div class="shooting-star" style="animation-delay:3s;"></div>
+
+<div class="garden" id="garden"></div>
 
 <script>
-    const glow = document.getElementById("glow");
-    const garden = document.getElementById("garden");
 
-    // Movimiento del brillo
-    document.addEventListener("mousemove", e => {
-        glow.style.left = e.clientX + "px";
-        glow.style.top = e.clientY + "px";
+/* Brillo */
+const glow = document.getElementById("glow");
+
+document.addEventListener("mousemove", e => {
+    glow.style.left = e.clientX + "px";
+    glow.style.top = e.clientY + "px";
+});
+
+document.addEventListener("touchmove", e => {
+    glow.style.left = e.touches[0].clientX + "px";
+    glow.style.top = e.touches[0].clientY + "px";
+});
+
+/* Estrellas */
+for (let i = 0; i < 80; i++) {
+    let star = document.createElement("div");
+    star.className = "star";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.animationDuration = (2 + Math.random() * 3) + "s";
+    document.body.appendChild(star);
+}
+
+/* Explosión corazones */
+document.querySelectorAll(".heart").forEach(heart => {
+    heart.addEventListener("click", () => {
+        heart.style.animation = "explode 0.6s forwards";
+        setTimeout(() => {
+            heart.style.animation = "float linear infinite";
+        }, 600);
     });
+});
 
-    // Crear Estrellas
-    for (let i = 0; i < 100; i++) {
-        let star = document.createElement("div");
-        star.className = "star";
-        star.style.top = Math.random() * 100 + "%";
-        star.style.left = Math.random() * 100 + "%";
-        star.style.animationDuration = (2 + Math.random() * 3) + "s";
-        document.body.appendChild(star);
-    }
+/* Crear 12 flores con distintos tamaños y colores */
+const garden = document.getElementById("garden");
+const blueTones = ["#4cc9f0", "#4895ef", "#4361ee", "#3f37c9", "#a2d2ff"];
 
-    // Crear Corazones
-    for (let i = 0; i < 8; i++) {
-        let heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "💙";
-        heart.style.left = Math.random() * 100 + "%";
-        heart.style.animationDuration = (8 + Math.random() * 8) + "s";
-        heart.style.animationDelay = Math.random() * 5 + "s";
-        document.body.appendChild(heart);
-    }
+for (let i = 0; i < 12; i++) {
+    let flower = document.createElement("div");
+    flower.className = "flower";
+    
+    // Variación de escala (tamaño)
+    const scale = 0.6 + Math.random() * 0.6;
+    // Variación de tono de azul para los pétalos
+    const randomColor = blueTones[Math.floor(Math.random() * blueTones.length)];
+    // Variación de velocidad de balanceo
+    const duration = (3 + Math.random() * 3) + "s";
+    const delay = -(Math.random() * 5) + "s";
 
-    // Generar Ramo de 12 flores
-    const totalFlowers = 12;
-    for (let i = 0; i < totalFlowers; i++) {
-        let flower = document.createElement("div");
-        flower.className = "flower";
-        
-        // Cálculo para el efecto de abanico (Ramo)
-        // Distribuye de -45 grados a +45 grados
-        const angle = -45 + (i * (90 / (totalFlowers - 1)));
-        const heightVariation = Math.sin(i) * 30; // Diferentes alturas
-        
-        flower.style.transform = `rotate(${angle}deg) translateY(${heightVariation}px)`;
-        
-        flower.innerHTML = `
-            <div class="stem"></div>
-            <div class="petal p1"></div>
-            <div class="petal p2"></div>
-            <div class="petal p3"></div>
-            <div class="petal p4"></div>
-            <div class="petal p5"></div>
-            <div class="center"></div>
-            <div class="leaf leaf-left"></div>
-            <div class="leaf leaf-right"></div>
-        `;
-        garden.appendChild(flower);
-    }
+    flower.style.transform = `scale(${scale})`;
+    flower.style.animationDuration = duration;
+    flower.style.animationDelay = delay;
+
+    flower.innerHTML = `
+        <div class="petal p1" style="background: ${randomColor}"></div>
+        <div class="petal p2" style="background: ${randomColor}"></div>
+        <div class="petal p3" style="background: ${randomColor}"></div>
+        <div class="petal p4" style="background: ${randomColor}"></div>
+        <div class="center"></div>
+        <div class="stem"></div>
+        <div class="leaf leaf-left"></div>
+        <div class="leaf leaf-right"></div>
+    `;
+    garden.appendChild(flower);
+}
+
 </script>
 
 </body>
