@@ -3,55 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para ti 💙</title>
-    <link rel="icon" href="https://fav.farm/💙" />
+    <title>Para mi amor 💙</title>
     <style>
-        :root {
-            --bg-dark: #030712;
-            --blue-flower: #4facfe;
-            --blue-light: #00f2fe;
-            --stem-green: #1a4d2e;
-            --heart-blue: rgba(0, 210, 255, 0.7);
-        }
-
         body {
             margin: 0;
-            overflow: hidden;
+            padding: 0;
             background: radial-gradient(circle at center, #0a192f 0%, #030712 100%);
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: flex-end;
+            overflow: hidden;
             font-family: 'Arial', sans-serif;
         }
 
-        /* Mensaje Superior */
         .message {
             position: absolute;
-            top: 10%;
+            top: 15%;
+            width: 100%;
             text-align: center;
-            color: white;
-            z-index: 100;
-            animation: fadeIn 3s ease-in;
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(0, 191, 255, 0.8);
+            z-index: 1000;
         }
 
-        .message h1 {
-            font-weight: 300;
-            font-size: 1.5rem;
-            text-shadow: 0 0 15px var(--blue-light);
-            margin: 0;
-        }
+        .message h1 { font-weight: 300; font-size: 1.8rem; margin: 0; }
+        .message p { font-size: 1.4rem; margin-top: 10px; opacity: 0.9; }
 
         /* Contenedor del Ramo */
-        .bouquet {
+        .bouquet-container {
             position: relative;
+            width: 200px;
+            height: 400px;
             display: flex;
             justify-content: center;
-            align-items: flex-end;
-            margin-bottom: -20px;
         }
 
-        /* Estructura de la Flor */
         .flower {
             position: absolute;
             bottom: 0;
@@ -62,85 +49,83 @@
             animation: sway 5s ease-in-out infinite alternate;
         }
 
+        /* Tallo y Hojas */
         .stem {
-            width: 5px;
-            background: linear-gradient(to top, #0d2818, var(--stem-green));
-            border-radius: 10px;
-            position: relative;
+            width: 6px;
+            background: linear-gradient(to top, #0d2818, #2d6a4f);
+            border-radius: 5px;
         }
 
-        /* Hojas del tallo */
         .leaf {
             position: absolute;
-            width: 25px;
-            height: 12px;
+            width: 30px;
+            height: 15px;
             background: #2d6a4f;
-            border-radius: 50px 0 50px 0;
+            border-radius: 50% 0 50% 0;
         }
-        .leaf.left { left: -25px; transform: rotate(-30deg); border-radius: 0 50px 0 50px; }
-        .leaf.right { right: -25px; transform: rotate(30deg); }
+        .leaf.left { left: -25px; transform: rotate(-35deg); }
+        .leaf.right { right: -25px; transform: rotate(35deg); border-radius: 0 50% 0 50%; }
 
-        /* Pétalos y Centro */
+        /* Construcción de la Flor */
         .flower-head {
             position: relative;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: -15px;
+            width: 100px;
+            height: 100px;
+            margin-bottom: -15px; /* Une la flor al tallo */
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 24px;
+            height: 24px;
+            background: #fff59d;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            box-shadow: 0 0 15px #fff, inset 0 0 8px #f9a825;
         }
 
         .petal {
             position: absolute;
-            background: var(--blue-flower);
+            top: 50%;
+            left: 50%;
             width: 45px;
             height: 45px;
-            border-radius: 50% 50% 10% 50%;
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+            background: #4facfe;
+            border-radius: 50% 50% 0 50%;
+            transform-origin: center;
+            opacity: 0.9;
+            box-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
         }
 
-        /* Posiciones pétalos */
-        .p1 { transform: rotate(0deg) translate(20px, 20px); }
-        .p2 { transform: rotate(72deg) translate(20px, 20px); }
-        .p3 { transform: rotate(144deg) translate(20px, 20px); }
-        .p4 { transform: rotate(216deg) translate(20px, 20px); }
-        .p5 { transform: rotate(288deg) translate(20px, 20px); }
-
-        .center {
-            position: absolute;
-            width: 22px;
-            height: 22px;
-            background: #fff59d;
-            border-radius: 50%;
-            z-index: 10;
-            box-shadow: 0 0 15px #fff;
-            border: 2px solid #f9a825;
-        }
+        /* Posiciones exactas de los 5 pétalos */
+        .p1 { transform: translate(-50%, -100%) rotate(0deg); }
+        .p2 { transform: translate(-50%, -100%) rotate(72deg); }
+        .p3 { transform: translate(-50%, -100%) rotate(144deg); }
+        .p4 { transform: translate(-50%, -100%) rotate(216deg); }
+        .p5 { transform: translate(-50%, -100%) rotate(288deg); }
 
         /* Corazones Azules Flotantes */
         .heart {
             position: absolute;
-            color: var(--heart-blue);
+            color: #00bfff;
+            font-size: 20px;
+            user-select: none;
             pointer-events: none;
-            z-index: 1;
             animation: floatUp linear infinite;
         }
 
         @keyframes floatUp {
             0% { transform: translateY(0) scale(0); opacity: 0; }
-            20% { opacity: 0.8; }
+            20% { opacity: 1; }
             100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
         }
 
         @keyframes sway {
-            0% { transform: rotate(-3deg); }
-            100% { transform: rotate(3deg); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { transform: rotate(-3deg); }
+            to { transform: rotate(3deg); }
         }
     </style>
 </head>
@@ -148,32 +133,35 @@
 
     <div class="message">
         <h1>te amo con mi vida entera, feliz san valentin</h1>
+        <p>Para tu 💙</p>
     </div>
 
-    <div class="bouquet" id="bouquet">
-        </div>
+    <div class="bouquet-container" id="bouquet"></div>
 
     <script>
-        const bouquet = document.getElementById('bouquet');
-        const flowerCount = 12; // Cantidad de flores para el ramo
+        const container = document.getElementById('bouquet');
+        
+        // Configuramos 10 flores con posiciones y tamaños distintos
+        const flowers = [
+            { h: 300, angle: 0, scale: 1.1 },    // Centro
+            { h: 260, angle: -20, scale: 0.9 },  // Izquierda
+            { h: 260, angle: 20, scale: 0.9 },   // Derecha
+            { h: 220, angle: -40, scale: 0.8 },  // Más izquierda
+            { h: 220, angle: 40, scale: 0.8 },   // Más derecha
+            { h: 180, angle: -10, scale: 0.7 },  // Pequeña frente
+            { h: 180, angle: 10, scale: 0.7 },   // Pequeña frente
+            { h: 240, angle: -60, scale: 0.75 }, // Lateral extremo
+            { h: 240, angle: 60, scale: 0.75 }   // Lateral extremo
+        ];
 
-        for (let i = 0; i < flowerCount; i++) {
-            const flower = document.createElement('div');
-            flower.className = 'flower';
-            
-            // Variar tamaños y posiciones para efecto de ramo
-            const height = 180 + Math.random() * 150;
-            const angle = (i - flowerCount/2) * 8; // Abre el ramo
-            const delay = Math.random() * -5;
-            const size = 0.6 + Math.random() * 0.6;
+        flowers.forEach((f, i) => {
+            const fDiv = document.createElement('div');
+            fDiv.className = 'flower';
+            fDiv.style.transform = `rotate(${f.angle}deg)`;
+            fDiv.style.animationDelay = `${i * 0.3}s`;
 
-            flower.style.height = `${height}px`;
-            flower.style.transform = `rotate(${angle}deg)`;
-            flower.style.animationDelay = `${delay}s`;
-            flower.style.zIndex = Math.floor(height);
-
-            flower.innerHTML = `
-                <div class="flower-head" style="transform: scale(${size})">
+            fDiv.innerHTML = `
+                <div class="flower-head" style="transform: scale(${f.scale})">
                     <div class="petal p1"></div>
                     <div class="petal p2"></div>
                     <div class="petal p3"></div>
@@ -181,27 +169,26 @@
                     <div class="petal p5"></div>
                     <div class="center"></div>
                 </div>
-                <div class="stem" style="height: ${height}px">
-                    <div class="leaf left" style="bottom: 20%"></div>
-                    <div class="leaf right" style="bottom: 40%"></div>
+                <div class="stem" style="height: ${f.h}px">
+                    <div class="leaf left" style="bottom: 30%"></div>
+                    <div class="leaf right" style="bottom: 50%"></div>
                 </div>
             `;
-            bouquet.appendChild(flower);
-        }
+            container.appendChild(fDiv);
+        });
 
-        // Crear corazones azules
+        // Generador de corazones azules
         function createHeart() {
             const heart = document.createElement('div');
             heart.className = 'heart';
             heart.innerHTML = '💙';
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-            heart.style.bottom = '-5vh';
-            heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            heart.style.bottom = '-20px';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
             document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 8000);
+            setTimeout(() => heart.remove(), 7000);
         }
-        setInterval(createHeart, 250);
+        setInterval(createHeart, 300);
     </script>
 </body>
 </html>
