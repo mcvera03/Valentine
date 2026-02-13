@@ -1,27 +1,25 @@
+// 🌌 Stars
 for (let i = 0; i < 80; i++) {
   const star = document.createElement("div");
-  star.className = "star";
-  document.body.appendChild(star);
-
+  star.style.position = "absolute";
+  star.style.width = "2px";
+  star.style.height = "2px";
+  star.style.background = "#66ccff";
+  star.style.borderRadius = "50%";
   star.style.left = Math.random() * 100 + "vw";
   star.style.top = Math.random() * 100 + "vh";
-  star.style.animationDuration = 2 + Math.random() * 3 + "s";
+  star.style.opacity = Math.random();
+  document.body.appendChild(star);
 }
 
-const style = document.createElement("style");
-style.innerHTML = `
-.star {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: #66ccff;
-  border-radius: 50%;
-  animation: blink infinite alternate;
-}
+// 💙 Hearts
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💙";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+  document.body.appendChild(heart);
 
-@keyframes blink {
-  from { opacity: 0.2; }
-  to { opacity: 1; }
-}
-`;
-document.head.appendChild(style);
+  setTimeout(() => heart.remove(), 8000);
+}, 800);
