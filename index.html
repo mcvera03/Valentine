@@ -8,11 +8,13 @@
         body {
             margin: 0;
             padding: 0;
+            background: #030712;
             background: radial-gradient(circle at center, #0a192f 0%, #030712 100%);
             height: 100vh;
             display: flex;
-            justify-content: center;
-            align-items: flex-end;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
             overflow: hidden;
             font-family: 'Arial', sans-serif;
         }
@@ -20,40 +22,48 @@
         .message {
             position: absolute;
             top: 15%;
-            width: 100%;
             text-align: center;
-            color: #ffffff;
-            text-shadow: 0 0 15px rgba(0, 191, 255, 0.8);
-            z-index: 1000;
+            color: white;
+            z-index: 100;
         }
 
-        .message h1 { font-weight: 300; font-size: 1.8rem; margin: 0; }
-        .message p { font-size: 1.4rem; margin-top: 10px; opacity: 0.9; }
+        .message h1 {
+            font-size: 1.6rem;
+            font-weight: 300;
+            text-shadow: 0 0 15px #00bfff;
+            margin: 0;
+        }
 
-        /* Contenedor del Ramo */
-        .bouquet-container {
+        .message p {
+            font-size: 1.4rem;
+            margin: 10px 0;
+        }
+
+        /* El Ramo */
+        .bouquet {
             position: relative;
-            width: 200px;
-            height: 400px;
+            width: 100%;
+            height: 60vh;
             display: flex;
             justify-content: center;
+            align-items: flex-end;
         }
 
         .flower {
             position: absolute;
-            bottom: 0;
+            bottom: -20px;
+            transform-origin: bottom center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            transform-origin: bottom center;
-            animation: sway 5s ease-in-out infinite alternate;
+            animation: sway 4s ease-in-out infinite alternate;
         }
 
-        /* Tallo y Hojas */
+        /* Tallos y Hojas */
         .stem {
             width: 6px;
-            background: linear-gradient(to top, #0d2818, #2d6a4f);
-            border-radius: 5px;
+            background: linear-gradient(to top, #132a13, #2d6a4f);
+            border-radius: 10px;
         }
 
         .leaf {
@@ -63,64 +73,63 @@
             background: #2d6a4f;
             border-radius: 50% 0 50% 0;
         }
-        .leaf.left { left: -25px; transform: rotate(-35deg); }
-        .leaf.right { right: -25px; transform: rotate(35deg); border-radius: 0 50% 0 50%; }
+        .leaf.left { left: -25px; transform: rotate(-30deg); border-radius: 0 50% 0 50%; }
+        .leaf.right { right: -25px; transform: rotate(30deg); }
 
-        /* Construcción de la Flor */
+        /* Flor: Cabeza */
         .flower-head {
             position: relative;
-            width: 100px;
-            height: 100px;
-            margin-bottom: -15px; /* Une la flor al tallo */
-        }
-
-        .center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 24px;
-            height: 24px;
-            background: #fff59d;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            box-shadow: 0 0 15px #fff, inset 0 0 8px #f9a825;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+            margin-bottom: -15px;
         }
 
         .petal {
             position: absolute;
-            top: 50%;
-            left: 50%;
             width: 45px;
             height: 45px;
-            background: #4facfe;
-            border-radius: 50% 50% 0 50%;
-            transform-origin: center;
+            background: #5ebfff;
+            border-radius: 50% 50% 10% 50%;
             opacity: 0.9;
-            box-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+            transform-origin: bottom right;
         }
 
-        /* Posiciones exactas de los 5 pétalos */
-        .p1 { transform: translate(-50%, -100%) rotate(0deg); }
-        .p2 { transform: translate(-50%, -100%) rotate(72deg); }
-        .p3 { transform: translate(-50%, -100%) rotate(144deg); }
-        .p4 { transform: translate(-50%, -100%) rotate(216deg); }
-        .p5 { transform: translate(-50%, -100%) rotate(288deg); }
+        /* Posicionamiento exacto de pétalos */
+        .p1 { transform: rotate(0deg) translate(-50%, -50%); }
+        .p2 { transform: rotate(72deg) translate(-50%, -50%); }
+        .p3 { transform: rotate(144deg) translate(-50%, -50%); }
+        .p4 { transform: rotate(216deg) translate(-50%, -50%); }
+        .p5 { transform: rotate(288deg) translate(-50%, -50%); }
 
-        /* Corazones Azules Flotantes */
+        .center {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #fff9c4;
+            border-radius: 50%;
+            z-index: 10;
+            box-shadow: 0 0 15px #fff, inset 0 0 5px orange;
+        }
+
+        /* Corazones Azules Animados */
         .heart {
             position: absolute;
             color: #00bfff;
-            font-size: 20px;
-            user-select: none;
+            font-size: 22px;
             pointer-events: none;
-            animation: floatUp linear infinite;
+            z-index: 1;
+            animation: float 6s linear infinite;
         }
 
-        @keyframes floatUp {
+        @keyframes float {
             0% { transform: translateY(0) scale(0); opacity: 0; }
-            20% { opacity: 1; }
-            100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) scale(1.5) rotate(45deg); opacity: 0; }
         }
 
         @keyframes sway {
@@ -136,32 +145,32 @@
         <p>Para tu 💙</p>
     </div>
 
-    <div class="bouquet-container" id="bouquet"></div>
+    <div class="bouquet" id="bouquet"></div>
 
     <script>
-        const container = document.getElementById('bouquet');
+        const bouquet = document.getElementById('bouquet');
         
-        // Configuramos 10 flores con posiciones y tamaños distintos
-        const flowers = [
-            { h: 300, angle: 0, scale: 1.1 },    // Centro
-            { h: 260, angle: -20, scale: 0.9 },  // Izquierda
-            { h: 260, angle: 20, scale: 0.9 },   // Derecha
-            { h: 220, angle: -40, scale: 0.8 },  // Más izquierda
-            { h: 220, angle: 40, scale: 0.8 },   // Más derecha
-            { h: 180, angle: -10, scale: 0.7 },  // Pequeña frente
-            { h: 180, angle: 10, scale: 0.7 },   // Pequeña frente
-            { h: 240, angle: -60, scale: 0.75 }, // Lateral extremo
-            { h: 240, angle: 60, scale: 0.75 }   // Lateral extremo
+        // Datos para crear el ramo denso (alturas, ángulos y tamaños)
+        const flowerData = [
+            { h: 320, a: 0, s: 1.2 },    // Centro principal
+            { h: 280, a: -20, s: 1.0 },  // Izquierda
+            { h: 280, a: 20, s: 1.0 },   // Derecha
+            { h: 240, a: -40, s: 0.8 },  // Más izq
+            { h: 240, a: 40, s: 0.8 },   // Más der
+            { h: 190, a: -10, s: 0.7 },  // Pequeña frente
+            { h: 190, a: 10, s: 0.7 },   // Pequeña frente
+            { h: 220, a: -60, s: 0.7 },  // Extremo izq
+            { h: 220, a: 60, s: 0.7 }    // Extremo der
         ];
 
-        flowers.forEach((f, i) => {
-            const fDiv = document.createElement('div');
-            fDiv.className = 'flower';
-            fDiv.style.transform = `rotate(${f.angle}deg)`;
-            fDiv.style.animationDelay = `${i * 0.3}s`;
+        flowerData.forEach((f, i) => {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.style.transform = `rotate(${f.a}deg)`;
+            flower.style.animationDelay = `${i * 0.2}s`;
 
-            fDiv.innerHTML = `
-                <div class="flower-head" style="transform: scale(${f.scale})">
+            flower.innerHTML = `
+                <div class="flower-head" style="transform: scale(${f.s})">
                     <div class="petal p1"></div>
                     <div class="petal p2"></div>
                     <div class="petal p3"></div>
@@ -174,16 +183,16 @@
                     <div class="leaf right" style="bottom: 50%"></div>
                 </div>
             `;
-            container.appendChild(fDiv);
+            bouquet.appendChild(flower);
         });
 
-        // Generador de corazones azules
+        // Corazones flotantes
         function createHeart() {
             const heart = document.createElement('div');
             heart.className = 'heart';
             heart.innerHTML = '💙';
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.bottom = '-20px';
+            heart.style.bottom = '0';
             heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 7000);
