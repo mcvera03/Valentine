@@ -79,85 +79,94 @@ html, body {
     100% { opacity: 0; }
 }
 
-/* Jardín */
+/* Jardín corregido */
 .garden {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 280px;
+    height: 350px; /* Un poco más alto para las flores grandes */
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    gap: 20px;
-    flex-wrap: wrap;
+    gap: 5px; /* Más pegadas para que se vea frondoso */
+    flex-wrap: nowrap;
+    padding-bottom: 20px;
 }
 
-/* Flor */
+/* Flor Realista */
 .flower {
     position: relative;
     width: 60px;
-    height: 200px;
+    height: 220px;
     animation: sway 4s ease-in-out infinite alternate;
-    transform-origin: bottom center; /* Crucial para que crezcan desde el suelo */
+    transform-origin: bottom center;
+    flex-shrink: 0;
 }
 
 .petal {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 50px;
     background: #4cc9f0;
-    border-radius: 50%;
+    border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%; /* Forma de gota realista */
     position: absolute;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
 }
 
-.p1 { top: 0; left: 7px; }
-.p2 { top: 35px; left: 7px; }
-.p3 { top: 17px; left: -15px; }
-.p4 { top: 17px; right: -15px; }
+/* Disposición de 5 pétalos */
+.p1 { top: -20px; left: 12px; transform: rotate(0deg); }
+.p2 { top: 5px; left: 30px; transform: rotate(72deg); }
+.p3 { top: 25px; left: 18px; transform: rotate(144deg); }
+.p4 { top: 25px; left: -5px; transform: rotate(216deg); }
+.p5 { top: 5px; left: -15px; transform: rotate(288deg); }
 
 .center {
-    width: 30px;
-    height: 30px;
-    background: #1d4ed8;
+    width: 28px;
+    height: 28px;
+    background: radial-gradient(circle, #facc15 0%, #1d4ed8 100%); /* Centro con profundidad */
     border-radius: 50%;
     position: absolute;
-    top: 20px;
-    left: 15px;
+    top: 15px;
+    left: 16px;
+    z-index: 5;
+    border: 2px dotted rgba(255,255,255,0.3);
 }
 
 .stem {
-    width: 5px;
-    height: 120px;
-    background: #38b000;
+    width: 6px;
+    height: 150px;
+    background: linear-gradient(to bottom, #38b000, #1b4332);
     position: absolute;
     top: 60px;
     left: 50%;
     transform: translateX(-50%);
+    border-radius: 3px;
 }
 
-/* Hojas */
+/* Hojas Realistas */
 .leaf {
     position: absolute;
-    width: 30px;
-    height: 15px;
+    width: 35px;
+    height: 18px;
     background: #2d6a4f;
-    border-radius: 50%;
+    border-radius: 50% 0 50% 0; /* Forma de hoja puntiaguda */
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
 }
 
 .leaf-left {
-    top: 100px;
+    top: 110px;
     left: -20px;
     transform: rotate(-30deg);
 }
 
 .leaf-right {
-    top: 120px;
+    top: 135px;
     right: -20px;
     transform: rotate(30deg);
 }
 
 @keyframes sway {
-    0% { transform: rotate(-4deg); }
-    100% { transform: rotate(4deg); }
+    0% { transform: rotate(-3deg) translateX(-2px); }
+    100% { transform: rotate(3deg) translateX(2px); }
 }
 
 /* Brillo dedo */
@@ -231,31 +240,30 @@ document.querySelectorAll(".heart").forEach(heart => {
     });
 });
 
-/* Crear 12 flores con distintos tamaños y colores */
+/* Crear 25 flores realistas con variaciones */
 const garden = document.getElementById("garden");
-const blueTones = ["#4cc9f0", "#4895ef", "#4361ee", "#3f37c9", "#a2d2ff"];
+const colors = ["#4cc9f0", "#4895ef", "#4361ee", "#3f37c9", "#bde0fe", "#00b4d8"];
 
-for (let i = 0; i < 12; i++) {
+for (let i = 0; i < 25; i++) {
     let flower = document.createElement("div");
     flower.className = "flower";
     
-    // Variación de escala (tamaño)
-    const scale = 0.6 + Math.random() * 0.6;
-    // Variación de tono de azul para los pétalos
-    const randomColor = blueTones[Math.floor(Math.random() * blueTones.length)];
-    // Variación de velocidad de balanceo
-    const duration = (3 + Math.random() * 3) + "s";
-    const delay = -(Math.random() * 5) + "s";
-
+    // Escala aleatoria (entre 0.5 y 1.2)
+    const scale = 0.5 + Math.random() * 0.7;
+    // Color aleatorio de la paleta azul
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    // Retraso de animación para naturalidad
+    const delay = -(Math.random() * 5);
+    
     flower.style.transform = `scale(${scale})`;
-    flower.style.animationDuration = duration;
-    flower.style.animationDelay = delay;
-
+    flower.style.animationDelay = `${delay}s`;
+    
     flower.innerHTML = `
-        <div class="petal p1" style="background: ${randomColor}"></div>
-        <div class="petal p2" style="background: ${randomColor}"></div>
-        <div class="petal p3" style="background: ${randomColor}"></div>
-        <div class="petal p4" style="background: ${randomColor}"></div>
+        <div class="petal p1" style="background: ${color}"></div>
+        <div class="petal p2" style="background: ${color}"></div>
+        <div class="petal p3" style="background: ${color}"></div>
+        <div class="petal p4" style="background: ${color}"></div>
+        <div class="petal p5" style="background: ${color}"></div>
         <div class="center"></div>
         <div class="stem"></div>
         <div class="leaf leaf-left"></div>
