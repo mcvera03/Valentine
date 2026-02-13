@@ -6,8 +6,17 @@
 <title>Feliz San Valentín 💙</title>
 
 <style>
-body {
+
+/* FORZAR FONDO COMPLETO */
+html, body {
     margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #000814;
+}
+
+/* Fondo real */
+body {
     overflow: hidden;
     background: radial-gradient(circle at center, #0d1b2a 0%, #000814 70%);
     font-family: Arial, sans-serif;
@@ -33,7 +42,7 @@ body {
     margin-top: 10px;
 }
 
-/* Corazones flotando */
+/* Corazones */
 .heart {
     position: absolute;
     font-size: 22px;
@@ -69,7 +78,6 @@ body {
     animation: sway 4s ease-in-out infinite alternate;
 }
 
-/* Pétalos */
 .petal {
     width: 45px;
     height: 45px;
@@ -83,7 +91,6 @@ body {
 .p3 { left: 0; top: 7px; }
 .p4 { right: 0; top: 7px; }
 
-/* Centro */
 .center {
     width: 30px;
     height: 30px;
@@ -95,7 +102,6 @@ body {
     z-index: 2;
 }
 
-/* Tallo */
 .stem {
     width: 5px;
     height: 120px;
@@ -106,11 +112,11 @@ body {
     transform: translateX(-50%);
 }
 
-/* Movimiento */
 @keyframes sway {
     0% { transform: rotate(-5deg); }
     100% { transform: rotate(5deg); }
 }
+
 </style>
 </head>
 
@@ -129,7 +135,6 @@ body {
 <div class="heart" style="left:75%; animation-duration:10s;">💙</div>
 <div class="heart" style="left:90%; animation-duration:12s;">💙</div>
 
-<!-- Flores -->
 <div class="garden">
 
 <div class="flower">
