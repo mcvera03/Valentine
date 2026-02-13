@@ -64,8 +64,14 @@ body{
 }
 
 @keyframes explosion{
-    0%{opacity:1; transform:scale(1);}
-    100%{opacity:0; transform:scale(2) translateY(-30px);}
+    0%{
+        opacity:1;
+        transform:scale(1);
+    }
+    100%{
+        opacity:0;
+        transform:scale(2) translateY(-30px);
+    }
 }
 </style>
 </head>
@@ -73,7 +79,6 @@ body{
 <body>
 
 <script>
-
 /* Crear muchas estrellas */
 for(let i=0;i<120;i++){
     let estrella=document.createElement("div");
@@ -92,13 +97,16 @@ document.addEventListener("touchmove",function(e){
 
 function crearMagia(e){
 
+    // Brillo
     let brillo=document.createElement("div");
     brillo.className="brillo";
     brillo.style.left=e.clientX+"px";
     brillo.style.top=e.clientY+"px";
     document.body.appendChild(brillo);
+
     setTimeout(()=>{brillo.remove()},600);
 
+    // Corazones aleatorios
     if(Math.random()>0.7){
         let corazon=document.createElement("div");
         corazon.className="corazon";
@@ -106,57 +114,10 @@ function crearMagia(e){
         corazon.style.left=e.clientX+"px";
         corazon.style.top=e.clientY+"px";
         document.body.appendChild(corazon);
+
         setTimeout(()=>{corazon.remove()},1000);
     }
 }
-
-/* =========================
-   RAMO AZUL (NO MUEVE NADA)
-========================= */
-
-const centroX = window.innerWidth / 2;
-const baseY = window.innerHeight - 40;
-
-const posiciones = [
-  {x:-70,y:-330},{x:-35,y:-310},{x:0,y:-320},{x:35,y:-310},{x:70,y:-330},
-  {x:-90,y:-270},{x:-45,y:-250},{x:45,y:-250},{x:90,y:-270},
-  {x:-55,y:-200},{x:55,y:-200},{x:0,y:-160}
-];
-
-posiciones.forEach(pos=>{
-
-    // Flor azul
-    let flor=document.createElement("div");
-    flor.style.position="absolute";
-    flor.style.left=(centroX + pos.x)+"px";
-    flor.style.top=(baseY + pos.y)+"px";
-    flor.style.fontSize=(38 + Math.random()*12)+"px";
-    flor.style.filter="drop-shadow(0 0 10px #66ccff)";
-    flor.innerHTML="💙";
-    document.body.appendChild(flor);
-
-    // Tallo
-    let tallo=document.createElement("div");
-    tallo.style.position="absolute";
-    tallo.style.width="3px";
-    tallo.style.height="160px";
-    tallo.style.background="#66ccff";
-    tallo.style.left=centroX+"px";
-    tallo.style.top=(baseY-160)+"px";
-    tallo.style.transformOrigin="bottom center";
-    tallo.style.transform="rotate("+(pos.x/6)+"deg)";
-    document.body.appendChild(tallo);
-
-    // Hoja
-    let hoja=document.createElement("div");
-    hoja.style.position="absolute";
-    hoja.style.left=(centroX + pos.x/2)+"px";
-    hoja.style.top=(baseY-120)+"px";
-    hoja.style.fontSize="20px";
-    hoja.innerHTML="🌿";
-    document.body.appendChild(hoja);
-});
-
 </script>
 
 </body>
