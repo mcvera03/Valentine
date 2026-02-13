@@ -18,7 +18,6 @@ html, body {
     text-align: center;
 }
 
-/* Texto Estético Mejorado */
 .message {
     position: absolute;
     top: 15%;
@@ -53,7 +52,7 @@ html, body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Corazones */
+
 .heart {
     position: absolute;
     font-size: 22px;
@@ -72,7 +71,7 @@ html, body {
     100% { transform: scale(0); opacity: 0; }
 }
 
-/* Estrellas */
+
 .star {
     position: absolute;
     width: 3px;
@@ -88,7 +87,7 @@ html, body {
     to { opacity: 1; }
 }
 
-/* Estrella fugaz */
+
 .shooting-star {
     position: absolute;
     width: 2px;
@@ -106,7 +105,7 @@ html, body {
     100% { opacity: 0; }
 }
 
-/* Jardín */
+
 .garden {
     position: absolute;
     bottom: 0;
@@ -115,13 +114,12 @@ html, body {
     pointer-events: none;
 }
 
-/* Flor Realista con Crecimiento Lento */
 .flower {
     position: absolute;
     bottom: -10px;
     width: 40px;
     height: 180px;
-    /* Crecimiento de 5 segundos para que sea más suave */
+
     animation: sway 4s ease-in-out infinite alternate, grow 5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     transform-origin: bottom center;
     opacity: 0;
@@ -184,7 +182,7 @@ html, body {
     100% { transform: scale(var(--scale)) rotate(2deg); }
 }
 
-/* Brillo dedo */
+
 .cursor-glow {
     position: fixed;
     width: 40px;
@@ -202,7 +200,7 @@ html, body {
 <body>
 
 <div class="message">
-    <h1>Ni con mil estrellas ni con cien flores podría renderizar lo que siento por ti.</h1>
+    <h1>Ni con mil estrellas, ni con cien flores, podría renderizar lo que siento por ti.</h1>
     <p>Eres mi constante favorita en un universo lleno de variables. 💙</p>
 </div>
 
@@ -222,7 +220,6 @@ html, body {
 
 <script>
 
-/* Brillo */
 const glow = document.getElementById("glow");
 
 document.addEventListener("mousemove", e => {
@@ -235,7 +232,7 @@ document.addEventListener("touchmove", e => {
     glow.style.top = e.touches[0].clientY + "px";
 });
 
-/* Estrellas */
+
 for (let i = 0; i < 80; i++) {
     let star = document.createElement("div");
     star.className = "star";
@@ -245,7 +242,7 @@ for (let i = 0; i < 80; i++) {
     document.body.appendChild(star);
 }
 
-/* Explosión corazones */
+
 document.querySelectorAll(".heart").forEach(heart => {
     heart.addEventListener("click", () => {
         heart.style.animation = "explode 0.6s forwards";
@@ -255,7 +252,7 @@ document.querySelectorAll(".heart").forEach(heart => {
     });
 });
 
-/* Crear 100 flores con Crecimiento Lento y Profundidad */
+
 const garden = document.getElementById("garden");
 const blueTones = ["#4cc9f0", "#4895ef", "#4361ee", "#3f37c9", "#bde0fe", "#00b4d8", "#90e0ef"];
 
@@ -266,7 +263,7 @@ for (let i = 0; i < 100; i++) {
     const posX = Math.random() * 100;
     const scale = 0.3 + Math.random() * 0.8;
     const color = blueTones[Math.floor(Math.random() * blueTones.length)];
-    // El retraso se extiende hasta 6 segundos para que nazcan poco a poco
+    
     const growDelay = Math.random() * 6; 
     const swayDuration = (3 + Math.random() * 2) + "s";
 
@@ -278,7 +275,7 @@ for (let i = 0; i < 100; i++) {
     flower.style.filter = `brightness(${brightness})`;
 
     flower.style.animationDelay = `${growDelay}s, -${Math.random() * 5}s`;
-    // Duración de crecimiento de 5s
+    
     flower.style.animationDuration = `5s, ${swayDuration}`;
 
     flower.innerHTML = `
