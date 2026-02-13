@@ -15,7 +15,7 @@ body {
     text-align: center;
 }
 
-/* Mensaje */
+/* Texto */
 .message {
     position: absolute;
     top: 18%;
@@ -33,11 +33,11 @@ body {
     margin-top: 10px;
 }
 
-/* Corazones */
+/* Corazones flotando */
 .heart {
     position: absolute;
     font-size: 22px;
-    animation: float 12s linear infinite;
+    animation: float linear infinite;
 }
 
 @keyframes float {
@@ -69,18 +69,6 @@ body {
     animation: sway 4s ease-in-out infinite alternate;
 }
 
-/* Centro */
-.center {
-    width: 30px;
-    height: 30px;
-    background: #1d4ed8;
-    border-radius: 50%;
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    z-index: 2;
-}
-
 /* Pétalos */
 .petal {
     width: 45px;
@@ -95,6 +83,18 @@ body {
 .p3 { left: 0; top: 7px; }
 .p4 { right: 0; top: 7px; }
 
+/* Centro */
+.center {
+    width: 30px;
+    height: 30px;
+    background: #1d4ed8;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 2;
+}
+
 /* Tallo */
 .stem {
     width: 5px;
@@ -106,7 +106,7 @@ body {
     transform: translateX(-50%);
 }
 
-/* Movimiento suave */
+/* Movimiento */
 @keyframes sway {
     0% { transform: rotate(-5deg); }
     100% { transform: rotate(5deg); }
