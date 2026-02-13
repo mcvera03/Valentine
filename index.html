@@ -23,7 +23,7 @@ html, body {
     position: absolute;
     top: 18%;
     width: 100%;
-    z-index: 10;
+    z-index: 200; /* Subido para que siempre esté por encima del jardín */
 }
 
 /* Corazones */
@@ -79,32 +79,26 @@ html, body {
     100% { opacity: 0; }
 }
 
-/* Jardín de flores */
+/* Jardín Profundo */
 .garden {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 380px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    flex-wrap: nowrap;
-    overflow: visible;
-    padding-bottom: 0;
+    height: 300px;
+    pointer-events: none;
 }
 
-/* Estructura de la Flor Realista */
+/* Flor Realista */
 .flower {
-    position: relative;
+    position: absolute;
+    bottom: -10px;
     width: 40px;
-    height: 200px;
-    animation: sway 4s ease-in-out infinite alternate, grow 2s ease-out forwards;
+    height: 180px;
+    animation: sway 4s ease-in-out infinite alternate, grow 2.5s ease-out forwards;
     transform-origin: bottom center;
-    flex-shrink: 0;
-    opacity: 0; /* Empiezan invisibles para el efecto de crecimiento */
+    opacity: 0;
 }
 
-/* Animación de crecimiento inicial */
 @keyframes grow {
     0% { transform: scale(0); opacity: 0; }
     100% { transform: scale(var(--scale)); opacity: 1; }
@@ -138,28 +132,28 @@ html, body {
 
 .stem {
     width: 4px;
-    height: 180px;
+    height: 100%;
     background: linear-gradient(to bottom, #38b000, #1b4332);
     position: absolute;
-    top: 40px;
+    top: 35px;
     left: 18px;
     border-radius: 2px;
 }
 
 .leaf {
     position: absolute;
-    width: 30px;
-    height: 14px;
+    width: 25px;
+    height: 12px;
     background: #2d6a4f;
     border-radius: 50% 0 50% 0;
 }
 
-.leaf-left { top: 100px; left: -10px; transform: rotate(-30deg); }
-.leaf-right { top: 120px; right: -10px; transform: rotate(30deg); }
+.leaf-left { top: 60px; left: -8px; transform: rotate(-30deg); }
+.leaf-right { top: 85px; right: -8px; transform: rotate(30deg); }
 
 @keyframes sway {
-    0% { transform: scale(var(--scale)) rotate(-3deg); }
-    100% { transform: scale(var(--scale)) rotate(3deg); }
+    0% { transform: scale(var(--scale)) rotate(-2deg); }
+    100% { transform: scale(var(--scale)) rotate(2deg); }
 }
 
 /* Brillo dedo */
@@ -233,25 +227,33 @@ document.querySelectorAll(".heart").forEach(heart => {
     });
 });
 
-/* Crear 50 flores realistas con crecimiento lento */
+/* Crear 100 flores con Efecto de Profundidad */
 const garden = document.getElementById("garden");
 const blueTones = ["#4cc9f0", "#4895ef", "#4361ee", "#3f37c9", "#bde0fe", "#00b4d8", "#90e0ef"];
 
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 100; i++) {
     let flower = document.createElement("div");
     flower.className = "flower";
     
-    // Tamaño aleatorio variado
-    const scale = 0.4 + Math.random() * 0.9;
+    const posX = Math.random() * 100;
+    // Escala variada para profundidad (0.3 lejos, 1.1 cerca)
+    const scale = 0.3 + Math.random() * 0.8;
     const color = blueTones[Math.floor(Math.random() * blueTones.length)];
-    // El "delay" de crecimiento hace que no salgan todas al mismo tiempo
-    const growDelay = Math.random() * 3; 
-    const swayDuration = (3 + Math.random() * 3) + "s";
+    const growDelay = Math.random() * 4; 
+    const swayDuration = (3 + Math.random() * 2) + "s";
 
-    // Pasamos la escala como variable CSS para que la animación de balanceo no la rompa
+    flower.style.left = `${posX}%`;
     flower.style.setProperty('--scale', scale);
+    
+    // Las flores más grandes (más cerca) tienen mayor z-index
+    flower.style.zIndex = Math.floor(scale * 100);
+    
+    // Las flores más lejanas (pequeñas) son un poco más oscuras para mayor realismo
+    const brightness = 0.6 + (scale * 0.4);
+    flower.style.filter = `brightness(${brightness})`;
+
     flower.style.animationDelay = `${growDelay}s, -${Math.random() * 5}s`;
-    flower.style.animationDuration = `2s, ${swayDuration}`;
+    flower.style.animationDuration = `2.5s, ${swayDuration}`;
 
     flower.innerHTML = `
         <div class="petal p1" style="background: ${color}"></div>
@@ -260,7 +262,7 @@ for (let i = 0; i < 50; i++) {
         <div class="petal p4" style="background: ${color}"></div>
         <div class="petal p5" style="background: ${color}"></div>
         <div class="center"></div>
-        <div class="stem"></div>
+        <div class="stem" style="height: ${100 + (scale * 100)}px"></div>
         <div class="leaf leaf-left"></div>
         <div class="leaf leaf-right"></div>
     `;
