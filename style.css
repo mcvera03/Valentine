@@ -1,7 +1,7 @@
 body {
   margin: 0;
   height: 100vh;
-  background: radial-gradient(circle at bottom, #001a33, #000814 80%);
+  background: radial-gradient(circle at bottom, #000814 0%, #000000 100%);
   overflow: hidden;
   font-family: Arial, sans-serif;
   color: #cce6ff;
@@ -10,87 +10,106 @@ body {
 
 h1 {
   position: absolute;
-  top: 40px;
+  top: 50px;
   width: 100%;
   font-weight: 300;
-  font-size: 2.5rem;
-  letter-spacing: 2px;
-  text-shadow: 0 0 20px #3399ff;
+  font-size: 2.8rem;
+  letter-spacing: 3px;
+  text-shadow: 0 0 25px #3399ff, 0 0 50px #0066ff;
 }
 
+/* 🌸 Garden */
 .garden {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 70%;
+  height: 75%;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 120px;
+  gap: 150px;
 }
 
+/* 🌸 Flower */
 .flower {
   position: relative;
-  width: 150px;
-  height: 300px;
-  animation: sway 4s ease-in-out infinite;
+  width: 180px;
+  height: 350px;
+  animation: sway 6s ease-in-out infinite;
+  transform-origin: bottom center;
 }
 
-.flower.small {
-  transform: scale(0.8);
-  animation-delay: 1s;
+.small { transform: scale(0.8); animation-delay: 1s; }
+.tiny { transform: scale(0.6); animation-delay: 2s; }
+
+/* 🌱 Growth animation */
+.flower,
+.stem,
+.leaf,
+.petals,
+.center {
+  animation: grow 2s ease forwards, sway 6s ease-in-out infinite;
 }
 
+@keyframes grow {
+  from { transform: scaleY(0); opacity: 0; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+
+/* 🌿 Stem */
 .stem {
   position: absolute;
   bottom: 0;
   left: 50%;
-  width: 8px;
-  height: 200px;
-  background: linear-gradient(#004080, #0073e6);
+  width: 10px;
+  height: 230px;
+  background: linear-gradient(#004080, #00aaff);
   transform: translateX(-50%);
   border-radius: 10px;
 }
 
+/* 🍃 Leaves */
 .leaf {
   position: absolute;
-  width: 60px;
-  height: 30px;
-  background: linear-gradient(#0059b3, #0099ff);
+  width: 70px;
+  height: 35px;
+  background: linear-gradient(#0059b3, #00ccff);
   border-radius: 50%;
+  filter: drop-shadow(0 0 10px #3399ff);
 }
 
 .leaf.left {
-  bottom: 120px;
-  left: 20px;
-  transform: rotate(-30deg);
+  bottom: 140px;
+  left: 15px;
+  transform: rotate(-35deg);
 }
 
 .leaf.right {
-  bottom: 90px;
-  right: 20px;
-  transform: rotate(30deg);
+  bottom: 100px;
+  right: 15px;
+  transform: rotate(35deg);
 }
 
+/* 🌸 Petals */
 .petals {
   position: absolute;
-  bottom: 200px;
+  bottom: 230px;
   left: 50%;
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   transform: translateX(-50%);
 }
 
 .petals span {
   position: absolute;
-  width: 60px;
-  height: 80px;
-  background: radial-gradient(circle at center, #66b3ff, #0066cc);
+  width: 80px;
+  height: 100px;
+  background: radial-gradient(circle, #66ccff 0%, #0073e6 60%, #003366 100%);
   border-radius: 50%;
   top: 20px;
   left: 30px;
   transform-origin: center bottom;
-  filter: drop-shadow(0 0 10px #3399ff);
+  filter: drop-shadow(0 0 20px #3399ff);
 }
 
 .petals span:nth-child(1) { transform: rotate(0deg); }
@@ -99,20 +118,36 @@ h1 {
 .petals span:nth-child(4) { transform: rotate(216deg); }
 .petals span:nth-child(5) { transform: rotate(288deg); }
 
+/* 🌼 Center */
 .center {
   position: absolute;
-  bottom: 230px;
+  bottom: 260px;
   left: 50%;
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle, #003366, #001a33);
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #001a33, #000814);
   border-radius: 50%;
   transform: translateX(-50%);
-  box-shadow: 0 0 20px #3399ff;
+  box-shadow: 0 0 25px #3399ff;
 }
 
+/* 🌬 Sway */
 @keyframes sway {
-  0% { transform: rotate(-2deg); }
-  50% { transform: rotate(2deg); }
-  100% { transform: rotate(-2deg); }
+  0% { rotate: -3deg; }
+  50% { rotate: 3deg; }
+  100% { rotate: -3deg; }
+}
+
+/* 💙 Hearts */
+.heart {
+  position: absolute;
+  color: #66ccff;
+  font-size: 20px;
+  animation: floatUp 8s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(100vh); opacity: 0; }
+  to { transform: translateY(-10vh); opacity: 1; }
 }
