@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* 💌 MENSAJE */
+.message {
+  position: fixed;
+  top: 15%;
+  width: 100%;
+  text-align: center;
+  font-size: 2.5rem;
+  color: #cce6ff;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px #6bb6ff;
+  opacity: 0;
+  animation: fadeIn 3s ease forwards;
+  animation-delay: 1s;
+  z-index: 5;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* 🌌 ESTRELLAS */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/* 🌊 FLORES */
+.flower {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.petal {
+  position: absolute;
+  width: 40px;
+  height: 60px;
+  background: radial-gradient(circle, #8ec5ff, #4a90e2);
+  border-radius: 50%;
+  top: 30px;
+  left: 40px;
+  transform-origin: center bottom;
+  box-shadow: 0 0 15px #6bb6ff;
+}
+
+.center {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #001f3f;
+  border-radius: 50%;
+  top: 45px;
+  left: 45px;
+}
+
+/* 💙 CORAZONES */
+.heart {
+  position: absolute;
+  background: #6bb6ff;
+  transform: rotate(45deg);
+  animation: rise linear infinite;
+  opacity: 0.8;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  background: #6bb6ff;
+  border-radius: 50%;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(0) rotate(45deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100vh) rotate(45deg);
+    opacity: 0;
+  }
+}
