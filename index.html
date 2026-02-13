@@ -1,51 +1,229 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Valentine 💙</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti 💙</title>
+    <link rel="icon" href="https://fav.farm/💙" />
+    <style>
+        :root {
+            --bg-color: #030712;
+            --flower-blue: #00d2ff;
+            --stem-green: #1a4d2e;
+            --leaf-green: #2d6a4f;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at center, #0a192f 0%, #030712 100%);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Mensaje de San Valentín */
+        .message {
+            position: absolute;
+            top: 15%;
+            width: 80%;
+            text-align: center;
+            color: #e0f2fe;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+            animation: fadeIn 4s ease-in-out;
+            z-index: 10;
+        }
+
+        .garden {
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            gap: 40px;
+            padding-bottom: 20px;
+        }
+
+        /* Estructura de la Flor */
+        .flower-group {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform-origin: bottom center;
+            animation: windSway 5s ease-in-out infinite alternate;
+        }
+
+        /* Tallos y Hojas (Estilo imagen original) */
+        .stem {
+            width: 6px;
+            height: 220px;
+            background: linear-gradient(to top, #0d2818, var(--stem-green));
+            border-radius: 10px;
+            position: relative;
+        }
+
+        /* Hojas laterales redondeadas */
+        .leaf {
+            position: absolute;
+            width: 30px;
+            height: 15px;
+            background: var(--leaf-green);
+            border-radius: 50px 0 50px 0;
+            left: 6px;
+        }
+
+        .leaf.left {
+            left: -30px;
+            border-radius: 0 50px 0 50px;
+            transform: rotate(-20deg);
+        }
+
+        .leaf.right {
+            transform: rotate(20deg);
+        }
+
+        /* Posicionamiento de hojas a lo largo del tallo */
+        .leaf-1 { bottom: 40px; }
+        .leaf-2 { bottom: 80px; }
+        .leaf-3 { bottom: 120px; }
+
+        /* Pétalos Azules con Brillo */
+        .petals-container {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            margin-bottom: -5px;
+        }
+
+        .petal {
+            position: absolute;
+            width: 45px;
+            height: 45px;
+            background: var(--flower-blue);
+            border-radius: 50% 50% 10% 50%;
+            opacity: 0.9;
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.4);
+        }
+
+        /* Colocación circular de pétalos */
+        .p1 { transform: rotate(0deg) translate(22px, 22px); }
+        .p2 { transform: rotate(72deg) translate(22px, 22px); }
+        .p3 { transform: rotate(144deg) translate(22px, 22px); }
+        .p4 { transform: rotate(216deg) translate(22px, 22px); }
+        .p5 { transform: rotate(288deg) translate(22px, 22px); }
+
+        .center-dot {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: #fff9c4;
+            border-radius: 50%;
+            top: 32px;
+            left: 32px;
+            z-index: 5;
+            box-shadow: 0 0 15px white;
+        }
+
+        /* Animación de balanceo suave */
+        @keyframes windSway {
+            0% { transform: rotate(-2deg); }
+            100% { transform: rotate(4deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; filter: blur(10px); }
+            to { opacity: 1; filter: blur(0); }
+        }
+
+        /* Mini partículas de luz (Luciérnagas) */
+        .firefly {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff;
+            animation: fly 10s linear infinite;
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+    </style>
 </head>
 <body>
 
-  <h1>Happy Valentine Day My Love 💙</h1>
-
-  <div class="garden">
-
-    <div class="flower">
-      <div class="stem"></div>
-      <div class="leaf left"></div>
-      <div class="leaf right"></div>
-      <div class="petals">
-        <span></span><span></span><span></span>
-        <span></span><span></span>
-      </div>
-      <div class="center"></div>
+    <div class="message">
+        te amo con mi vida entera, feliz san valentin
     </div>
 
-    <div class="flower small">
-      <div class="stem"></div>
-      <div class="leaf left"></div>
-      <div class="leaf right"></div>
-      <div class="petals">
-        <span></span><span></span><span></span>
-        <span></span><span></span>
-      </div>
-      <div class="center"></div>
+    <div class="garden">
+        <div class="flower-group" style="animation-delay: -1s;">
+            <div class="petals-container">
+                <div class="petal p1"></div><div class="petal p2"></div>
+                <div class="petal p3"></div><div class="petal p4"></div>
+                <div class="petal p5"></div><div class="center-dot"></div>
+            </div>
+            <div class="stem">
+                <div class="leaf left leaf-1"></div>
+                <div class="leaf right leaf-2"></div>
+                <div class="leaf left leaf-3"></div>
+            </div>
+        </div>
+
+        <div class="flower-group" style="animation-delay: 0s;">
+            <div class="petals-container">
+                <div class="petal p1" style="background: #e0f2fe;"></div>
+                <div class="petal p2" style="background: #e0f2fe;"></div>
+                <div class="petal p3" style="background: #e0f2fe;"></div>
+                <div class="petal p4" style="background: #e0f2fe;"></div>
+                <div class="petal p5" style="background: #e0f2fe;"></div>
+                <div class="center-dot"></div>
+            </div>
+            <div class="stem" style="height: 280px;">
+                <div class="leaf left leaf-1"></div>
+                <div class="leaf right leaf-2"></div>
+                <div class="leaf left leaf-3"></div>
+            </div>
+        </div>
+
+        <div class="flower-group" style="animation-delay: -2s;">
+            <div class="petals-container">
+                <div class="petal p1"></div><div class="petal p2"></div>
+                <div class="petal p3"></div><div class="petal p4"></div>
+                <div class="petal p5"></div><div class="center-dot"></div>
+            </div>
+            <div class="stem">
+                <div class="leaf right leaf-1"></div>
+                <div class="leaf left leaf-2"></div>
+                <div class="leaf right leaf-3"></div>
+            </div>
+        </div>
     </div>
 
-    <div class="flower tiny">
-      <div class="stem"></div>
-      <div class="leaf left"></div>
-      <div class="leaf right"></div>
-      <div class="petals">
-        <span></span><span></span><span></span>
-        <span></span><span></span>
-      </div>
-      <div class="center"></div>
-    </div>
+    <script>
+        // Crear luciérnagas mágicas
+        function createFirefly() {
+            const firefly = document.createElement('div');
+            firefly.className = 'firefly';
+            firefly.style.left = Math.random() * 100 + 'vw';
+            firefly.style.bottom = '0';
+            firefly.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            firefly.style.opacity = Math.random();
+            document.body.appendChild(firefly);
 
-  </div>
+            setTimeout(() => { firefly.remove(); }, 10000);
+        }
+        setInterval(createFirefly, 300);
+    </script>
 
-  <script src="script.js"></script>
 </body>
 </html>
