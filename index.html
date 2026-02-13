@@ -67,31 +67,6 @@ body{
     0%{opacity:1; transform:scale(1);}
     100%{opacity:0; transform:scale(2) translateY(-30px);}
 }
-
-/* ====== RAMO ====== */
-.flor{
-    position:absolute;
-    filter:drop-shadow(0 0 8px #66ccff);
-    animation:flotar 3s ease-in-out infinite alternate;
-}
-
-@keyframes flotar{
-    from{transform:translateY(0px);}
-    to{transform:translateY(-8px);}
-}
-
-.tallo{
-    position:absolute;
-    width:3px;
-    height:140px;
-    background:#66ccff;
-    transform-origin:bottom center;
-}
-
-.hoja{
-    position:absolute;
-    font-size:18px;
-}
 </style>
 </head>
 
@@ -136,43 +111,49 @@ function crearMagia(e){
 }
 
 /* =========================
-   SOLO FLORES CORREGIDAS
+   RAMO AZUL (NO MUEVE NADA)
 ========================= */
 
 const centroX = window.innerWidth / 2;
-const baseY = window.innerHeight - 80;
+const baseY = window.innerHeight - 40;
 
 const posiciones = [
-  {x:-60,y:-320},{x:-30,y:-300},{x:0,y:-310},{x:30,y:-300},{x:60,y:-320},
-  {x:-80,y:-260},{x:-40,y:-240},{x:40,y:-240},{x:80,y:-260},
-  {x:-50,y:-190},{x:50,y:-190},{x:0,y:-150}
+  {x:-70,y:-330},{x:-35,y:-310},{x:0,y:-320},{x:35,y:-310},{x:70,y:-330},
+  {x:-90,y:-270},{x:-45,y:-250},{x:45,y:-250},{x:90,y:-270},
+  {x:-55,y:-200},{x:55,y:-200},{x:0,y:-160}
 ];
 
 posiciones.forEach(pos=>{
 
-    // Flor
+    // Flor azul
     let flor=document.createElement("div");
-    flor.className="flor";
-    flor.innerHTML="🌸";
-    flor.style.fontSize=(35 + Math.random()*15)+"px";
+    flor.style.position="absolute";
     flor.style.left=(centroX + pos.x)+"px";
     flor.style.top=(baseY + pos.y)+"px";
+    flor.style.fontSize=(38 + Math.random()*12)+"px";
+    flor.style.filter="drop-shadow(0 0 10px #66ccff)";
+    flor.innerHTML="💙";
     document.body.appendChild(flor);
 
     // Tallo
     let tallo=document.createElement("div");
-    tallo.className="tallo";
+    tallo.style.position="absolute";
+    tallo.style.width="3px";
+    tallo.style.height="160px";
+    tallo.style.background="#66ccff";
     tallo.style.left=centroX+"px";
-    tallo.style.top=(baseY-140)+"px";
-    tallo.style.transform="rotate("+(pos.x/5)+"deg)";
+    tallo.style.top=(baseY-160)+"px";
+    tallo.style.transformOrigin="bottom center";
+    tallo.style.transform="rotate("+(pos.x/6)+"deg)";
     document.body.appendChild(tallo);
 
     // Hoja
     let hoja=document.createElement("div");
-    hoja.className="hoja";
-    hoja.innerHTML="🌿";
-    hoja.style.left=(centroX + (pos.x/2))+"px";
+    hoja.style.position="absolute";
+    hoja.style.left=(centroX + pos.x/2)+"px";
     hoja.style.top=(baseY-120)+"px";
+    hoja.style.fontSize="20px";
+    hoja.innerHTML="🌿";
     document.body.appendChild(hoja);
 });
 
