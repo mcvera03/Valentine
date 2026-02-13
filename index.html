@@ -3,121 +3,256 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Magia Azul</title>
+<title>Feliz San Valentín 💙</title>
 
 <style>
-body{
-    margin:0;
-    overflow:hidden;
-    background:linear-gradient(270deg,#001f3f,#003366,#004080,#002b5c);
-    background-size:800% 800%;
-    animation:fondo 15s ease infinite;
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #0d1b2a 0%, #000814 70%);
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
 }
 
-@keyframes fondo{
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-
-/* Estrellas */
-.estrella{
-    position:absolute;
-    width:4px;
-    height:4px;
-    background:white;
-    border-radius:50%;
-    box-shadow:0 0 10px #66ccff;
-    animation:brillar 2s infinite alternate;
-}
-
-@keyframes brillar{
-    from{opacity:0.3;}
-    to{opacity:1;}
-}
-
-/* Brillo que sigue el dedo */
-.brillo{
-    position:absolute;
-    width:15px;
-    height:15px;
-    background:radial-gradient(circle,#66ccff,transparent);
-    border-radius:50%;
-    pointer-events:none;
-    animation:desaparecer 0.6s forwards;
-}
-
-@keyframes desaparecer{
-    to{
-        opacity:0;
-        transform:scale(2);
-    }
+/* Texto */
+.message {
+    position: absolute;
+    top: 18%;
+    width: 100%;
+    z-index: 10;
 }
 
 /* Corazones */
-.corazon{
-    position:absolute;
-    font-size:20px;
-    color:#66ccff;
-    animation:explosion 1s ease-out forwards;
-    pointer-events:none;
+.heart {
+    position: absolute;
+    font-size: 22px;
+    animation: float linear infinite;
+    cursor: pointer;
 }
 
-@keyframes explosion{
-    0%{
-        opacity:1;
-        transform:scale(1);
-    }
-    100%{
-        opacity:0;
-        transform:scale(2) translateY(-30px);
-    }
+@keyframes float {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
 }
+
+@keyframes explode {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(2); opacity: 1; }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+/* Estrellas */
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #4cc9f0;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #4cc9f0;
+    animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.2; }
+    to { opacity: 1; }
+}
+
+/* Estrella fugaz */
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(-45deg, white, rgba(255,255,255,0));
+    opacity: 0;
+    transform: rotate(45deg);
+    animation: shoot 6s linear infinite;
+}
+
+@keyframes shoot {
+    0% { top: -10%; left: 110%; opacity: 0; }
+    10% { opacity: 1; }
+    50% { top: 60%; left: -10%; opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/* Jardín ramo */
+.garden {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Flor */
+.flower {
+    position: relative;
+    width: 60px;
+    height: 200px;
+    animation: sway 4s ease-in-out infinite alternate;
+}
+
+.petal {
+    width: 45px;
+    height: 45px;
+    background: #4cc9f0;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.p1 { top: 0; left: 7px; }
+.p2 { top: 35px; left: 7px; }
+.p3 { top: 17px; left: -15px; }
+.p4 { top: 17px; right: -15px; }
+
+.center {
+    width: 30px;
+    height: 30px;
+    background: #1d4ed8;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 15px;
+}
+
+.stem {
+    width: 5px;
+    height: 120px;
+    background: #38b000;
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Hojas */
+.leaf {
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    background: #2d6a4f;
+    border-radius: 50%;
+}
+
+.leaf-left {
+    top: 100px;
+    left: -20px;
+    transform: rotate(-30deg);
+}
+
+.leaf-right {
+    top: 120px;
+    right: -20px;
+    transform: rotate(30deg);
+}
+
+@keyframes sway {
+    0% { transform: rotate(-4deg); }
+    100% { transform: rotate(4deg); }
+}
+
+/* Brillo dedo */
+.cursor-glow {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(76,201,240,0.6) 0%, rgba(29,78,216,0) 70%);
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
 </style>
 </head>
 
 <body>
 
-<script>
-/* Crear muchas estrellas */
-for(let i=0;i<120;i++){
-    let estrella=document.createElement("div");
-    estrella.className="estrella";
-    estrella.style.top=Math.random()*100+"vh";
-    estrella.style.left=Math.random()*100+"vw";
-    estrella.style.animationDuration=(Math.random()*2+1)+"s";
-    document.body.appendChild(estrella);
-}
+<div class="message">
+    <h1>Te amo con mi vida entera, feliz san valentín 💙</h1>
+    <p>Para ti 💙</p>
+</div>
 
-/* Brillo que sigue el dedo */
-document.addEventListener("mousemove",crearMagia);
-document.addEventListener("touchmove",function(e){
-    crearMagia(e.touches[0]);
+<div class="cursor-glow" id="glow"></div>
+
+<!-- Corazones -->
+<div class="heart" style="left:10%; animation-duration:9s;">💙</div>
+<div class="heart" style="left:25%; animation-duration:13s;">💙</div>
+<div class="heart" style="left:40%; animation-duration:11s;">💙</div>
+<div class="heart" style="left:60%; animation-duration:15s;">💙</div>
+<div class="heart" style="left:75%; animation-duration:10s;">💙</div>
+<div class="heart" style="left:90%; animation-duration:12s;">💙</div>
+
+<!-- Estrellas fugaces -->
+<div class="shooting-star" style="animation-delay:0s;"></div>
+<div class="shooting-star" style="animation-delay:3s;"></div>
+
+<!-- Ramo de 12 flores -->
+<div class="garden" id="garden"></div>
+
+<script>
+
+/* Brillo */
+const glow = document.getElementById("glow");
+
+document.addEventListener("mousemove", e => {
+    glow.style.left = e.clientX + "px";
+    glow.style.top = e.clientY + "px";
 });
 
-function crearMagia(e){
+document.addEventListener("touchmove", e => {
+    glow.style.left = e.touches[0].clientX + "px";
+    glow.style.top = e.touches[0].clientY + "px";
+});
 
-    // Brillo
-    let brillo=document.createElement("div");
-    brillo.className="brillo";
-    brillo.style.left=e.clientX+"px";
-    brillo.style.top=e.clientY+"px";
-    document.body.appendChild(brillo);
-
-    setTimeout(()=>{brillo.remove()},600);
-
-    // Corazones aleatorios
-    if(Math.random()>0.7){
-        let corazon=document.createElement("div");
-        corazon.className="corazon";
-        corazon.innerHTML="💙";
-        corazon.style.left=e.clientX+"px";
-        corazon.style.top=e.clientY+"px";
-        document.body.appendChild(corazon);
-
-        setTimeout(()=>{corazon.remove()},1000);
-    }
+/* Estrellas */
+for (let i = 0; i < 80; i++) {
+    let star = document.createElement("div");
+    star.className = "star";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.animationDuration = (2 + Math.random() * 3) + "s";
+    document.body.appendChild(star);
 }
+
+/* Explosión corazones */
+document.querySelectorAll(".heart").forEach(heart => {
+    heart.addEventListener("click", () => {
+        heart.style.animation = "explode 0.6s forwards";
+        setTimeout(() => {
+            heart.style.animation = "float linear infinite";
+        }, 600);
+    });
+});
+
+/* Crear 12 flores */
+const garden = document.getElementById("garden");
+
+for (let i = 0; i < 12; i++) {
+    let flower = document.createElement("div");
+    flower.className = "flower";
+    flower.style.animationDuration = (3 + Math.random()*3) + "s";
+    flower.innerHTML = `
+        <div class="petal p1"></div>
+        <div class="petal p2"></div>
+        <div class="petal p3"></div>
+        <div class="petal p4"></div>
+        <div class="center"></div>
+        <div class="stem"></div>
+        <div class="leaf leaf-left"></div>
+        <div class="leaf leaf-right"></div>
+    `;
+    garden.appendChild(flower);
+}
+
 </script>
 
 </body>
