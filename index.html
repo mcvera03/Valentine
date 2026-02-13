@@ -3,254 +3,191 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feliz San Valentín 💙</title>
+<title>Ramo Azul Mágico</title>
 
 <style>
-
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-    background: radial-gradient(circle at center, #0d1b2a 0%, #000814 70%);
-    font-family: Arial, sans-serif;
-    color: white;
-    text-align: center;
+body{
+    margin:0;
+    overflow:hidden;
+    background:linear-gradient(135deg,#001f3f,#002b5c,#003f7f);
+    height:100vh;
 }
 
-/* Texto */
-.message {
-    position: absolute;
-    top: 18%;
-    width: 100%;
-    z-index: 10;
+/* ===== DESTELLO QUE SIGUE EL DEDO ===== */
+.cursor-glow{
+    position:fixed;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    pointer-events:none;
+    background:radial-gradient(circle,#66ccff,transparent);
+    box-shadow:0 0 20px #66ccff,0 0 40px #3399ff;
 }
 
-/* Corazones */
-.heart {
-    position: absolute;
-    font-size: 22px;
-    animation: float linear infinite;
-    cursor: pointer;
+/* ===== CORAZONES FLOTANDO ===== */
+.heart{
+    position:absolute;
+    color:#66ccff;
+    animation:float 6s linear infinite;
+    opacity:0.8;
 }
 
-@keyframes float {
-    from { transform: translateY(100vh); opacity: 1; }
-    to { transform: translateY(-10vh); opacity: 0; }
+@keyframes float{
+    0%{transform:translateY(100vh) scale(0.5);opacity:0;}
+    50%{opacity:1;}
+    100%{transform:translateY(-10vh) scale(1);opacity:0;}
 }
 
-@keyframes explode {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(2); opacity: 1; }
-    100% { transform: scale(0); opacity: 0; }
+/* ===== ESTRELLAS ===== */
+.star{
+    position:absolute;
+    color:white;
+    animation:twinkle 2s infinite alternate;
 }
 
-/* Estrellas */
-.star {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: #4cc9f0;
-    border-radius: 50%;
-    box-shadow: 0 0 6px #4cc9f0;
-    animation: twinkle 3s infinite alternate;
+@keyframes twinkle{
+    from{opacity:0.3;}
+    to{opacity:1;}
 }
 
-@keyframes twinkle {
-    from { opacity: 0.2; }
-    to { opacity: 1; }
+/* ===== ESTRELLA FUGAZ ===== */
+.shooting-star{
+    position:absolute;
+    width:3px;
+    height:80px;
+    background:linear-gradient(white,transparent);
+    transform:rotate(45deg);
+    animation:shoot 6s linear infinite;
 }
 
-/* Estrella fugaz */
-.shooting-star {
-    position: absolute;
-    width: 2px;
-    height: 80px;
-    background: linear-gradient(-45deg, white, rgba(255,255,255,0));
-    opacity: 0;
-    transform: rotate(45deg);
-    animation: shoot 6s linear infinite;
+@keyframes shoot{
+    0%{top:-100px; left:-100px; opacity:0;}
+    10%{opacity:1;}
+    100%{top:100vh; left:100vw; opacity:0;}
 }
 
-@keyframes shoot {
-    0% { top: -10%; left: 110%; opacity: 0; }
-    10% { opacity: 1; }
-    50% { top: 60%; left: -10%; opacity: 0; }
-    100% { opacity: 0; }
+/* ===== RAMO ===== */
+.ramo{
+    position:absolute;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:350px;
+    height:500px;
 }
 
-/* Jardín ramo */
-.garden {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 280px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 20px;
-    flex-wrap: wrap;
+.flor{
+    position:absolute;
+    filter:drop-shadow(0 0 10px #66ccff);
+    animation:flotar 4s ease-in-out infinite alternate;
 }
 
-/* Flor */
-.flower {
-    position: relative;
-    width: 60px;
-    height: 200px;
-    animation: sway 4s ease-in-out infinite alternate;
+@keyframes flotar{
+    from{transform:translateY(0);}
+    to{transform:translateY(-12px);}
 }
 
-.petal {
-    width: 45px;
-    height: 45px;
-    background: #4cc9f0;
-    border-radius: 50%;
-    position: absolute;
+.tallo{
+    position:absolute;
+    width:4px;
+    height:200px;
+    background:#3399ff;
+    bottom:100px;
+    left:175px;
+    transform-origin:bottom center;
 }
 
-.p1 { top: 0; left: 7px; }
-.p2 { top: 35px; left: 7px; }
-.p3 { top: 17px; left: -15px; }
-.p4 { top: 17px; right: -15px; }
-
-.center {
-    width: 30px;
-    height: 30px;
-    background: #1d4ed8;
-    border-radius: 50%;
-    position: absolute;
-    top: 20px;
-    left: 15px;
+.hoja{
+    position:absolute;
+    font-size:25px;
 }
 
-.stem {
-    width: 5px;
-    height: 120px;
-    background: #38b000;
-    position: absolute;
-    top: 60px;
-    left: 50%;
-    transform: translateX(-50%);
+.envoltura{
+    position:absolute;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:250px;
+    height:200px;
+    background:linear-gradient(#002b5c,#001f3f);
+    clip-path:polygon(0 0,100% 0,80% 100%,20% 100%);
 }
-
-/* Hojas */
-.leaf {
-    position: absolute;
-    width: 30px;
-    height: 15px;
-    background: #2d6a4f;
-    border-radius: 50%;
-}
-
-.leaf-left {
-    top: 100px;
-    left: -20px;
-    transform: rotate(-30deg);
-}
-
-.leaf-right {
-    top: 120px;
-    right: -20px;
-    transform: rotate(30deg);
-}
-
-@keyframes sway {
-    0% { transform: rotate(-4deg); }
-    100% { transform: rotate(4deg); }
-}
-
-/* Brillo dedo */
-.cursor-glow {
-    position: fixed;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    pointer-events: none;
-    background: radial-gradient(circle, rgba(76,201,240,0.6) 0%, rgba(29,78,216,0) 70%);
-    transform: translate(-50%, -50%);
-    z-index: 5;
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="message">
-    <h1>Te amo con mi vida entera, feliz san valentín 💙</h1>
-    <p>Para ti 💙</p>
-</div>
-
 <div class="cursor-glow" id="glow"></div>
 
-<!-- Corazones -->
-<div class="heart" style="left:10%; animation-duration:9s;">💙</div>
-<div class="heart" style="left:25%; animation-duration:13s;">💙</div>
-<div class="heart" style="left:40%; animation-duration:11s;">💙</div>
-<div class="heart" style="left:60%; animation-duration:15s;">💙</div>
-<div class="heart" style="left:75%; animation-duration:10s;">💙</div>
-<div class="heart" style="left:90%; animation-duration:12s;">💙</div>
+<div class="ramo" id="ramo">
+    <div class="envoltura"></div>
+</div>
 
-<!-- Estrellas fugaces -->
-<div class="shooting-star" style="animation-delay:0s;"></div>
-<div class="shooting-star" style="animation-delay:3s;"></div>
-
-<!-- Ramo de 12 flores -->
-<div class="garden" id="garden"></div>
+<div class="shooting-star"></div>
 
 <script>
 
-/* Brillo */
+/* ===== DESTELLO ===== */
 const glow = document.getElementById("glow");
 
-document.addEventListener("mousemove", e => {
-    glow.style.left = e.clientX + "px";
-    glow.style.top = e.clientY + "px";
+document.addEventListener("mousemove", e=>{
+    glow.style.left = e.clientX -10 +"px";
+    glow.style.top = e.clientY -10 +"px";
 });
 
-document.addEventListener("touchmove", e => {
-    glow.style.left = e.touches[0].clientX + "px";
-    glow.style.top = e.touches[0].clientY + "px";
-});
+/* ===== CORAZONES ===== */
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💙";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+15)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,800);
 
-/* Estrellas */
-for (let i = 0; i < 80; i++) {
-    let star = document.createElement("div");
-    star.className = "star";
-    star.style.top = Math.random() * 100 + "%";
-    star.style.left = Math.random() * 100 + "%";
-    star.style.animationDuration = (2 + Math.random() * 3) + "s";
+/* ===== ESTRELLAS ===== */
+for(let i=0;i<40;i++){
+    const star=document.createElement("div");
+    star.className="star";
+    star.innerHTML="✨";
+    star.style.left=Math.random()*100+"vw";
+    star.style.top=Math.random()*100+"vh";
+    star.style.fontSize=(Math.random()*10+10)+"px";
     document.body.appendChild(star);
 }
 
-/* Explosión corazones */
-document.querySelectorAll(".heart").forEach(heart => {
-    heart.addEventListener("click", () => {
-        heart.style.animation = "explode 0.6s forwards";
-        setTimeout(() => {
-            heart.style.animation = "float linear infinite";
-        }, 600);
-    });
-});
+/* ===== RAMO 12 FLORES ===== */
+const ramo=document.getElementById("ramo");
+const total=12;
 
-/* Crear 12 flores */
-const garden = document.getElementById("garden");
+for(let i=0;i<total;i++){
 
-for (let i = 0; i < 12; i++) {
-    let flower = document.createElement("div");
-    flower.className = "flower";
-    flower.style.animationDuration = (3 + Math.random()*3) + "s";
-    flower.innerHTML = `
-        <div class="petal p1"></div>
-        <div class="petal p2"></div>
-        <div class="petal p3"></div>
-        <div class="petal p4"></div>
-        <div class="center"></div>
-        <div class="stem"></div>
-        <div class="leaf leaf-left"></div>
-        <div class="leaf leaf-right"></div>
-    `;
-    garden.appendChild(flower);
+    let flor=document.createElement("div");
+    flor.className="flor";
+    flor.innerHTML="🌸";
+    flor.style.fontSize=(Math.random()*25+35)+"px";
+
+    let x=100+Math.random()*150;
+    let y=50+Math.random()*200;
+
+    flor.style.left=x+"px";
+    flor.style.top=y+"px";
+
+    ramo.appendChild(flor);
+
+    let tallo=document.createElement("div");
+    tallo.className="tallo";
+    tallo.style.transform="rotate("+(x-175)/4+"deg)";
+    ramo.appendChild(tallo);
+
+    let hoja=document.createElement("div");
+    hoja.className="hoja";
+    hoja.innerHTML="🌿";
+    hoja.style.left=(160+Math.random()*30)+"px";
+    hoja.style.bottom=(150+Math.random()*50)+"px";
+    ramo.appendChild(hoja);
 }
 
 </script>
