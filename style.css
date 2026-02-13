@@ -30,33 +30,19 @@ h1 {
   gap: 150px;
 }
 
-/* 🌸 Flower */
+/* 🌸 Flower container */
 .flower {
   position: relative;
   width: 180px;
   height: 350px;
-  animation: sway 6s ease-in-out infinite;
   transform-origin: bottom center;
+  animation: sway 6s ease-in-out infinite;
 }
 
-.small { transform: scale(0.8); animation-delay: 1s; }
-.tiny { transform: scale(0.6); animation-delay: 2s; }
+.small { transform: scale(0.8); }
+.tiny { transform: scale(0.6); }
 
-/* 🌱 Growth animation */
-.flower,
-.stem,
-.leaf,
-.petals,
-.center {
-  animation: grow 2s ease forwards, sway 6s ease-in-out infinite;
-}
-
-@keyframes grow {
-  from { transform: scaleY(0); opacity: 0; }
-  to { transform: scaleY(1); opacity: 1; }
-}
-
-/* 🌿 Stem */
+/* 🌱 Stem grow animation */
 .stem {
   position: absolute;
   bottom: 0;
@@ -66,6 +52,13 @@ h1 {
   background: linear-gradient(#004080, #00aaff);
   transform: translateX(-50%);
   border-radius: 10px;
+  animation: growStem 2s ease forwards;
+  transform-origin: bottom;
+}
+
+@keyframes growStem {
+  from { height: 0; }
+  to { height: 230px; }
 }
 
 /* 🍃 Leaves */
@@ -131,7 +124,7 @@ h1 {
   box-shadow: 0 0 25px #3399ff;
 }
 
-/* 🌬 Sway */
+/* 🌬 Sway animation */
 @keyframes sway {
   0% { rotate: -3deg; }
   50% { rotate: 3deg; }
@@ -141,7 +134,6 @@ h1 {
 /* 💙 Hearts */
 .heart {
   position: absolute;
-  color: #66ccff;
   font-size: 20px;
   animation: floatUp 8s linear infinite;
   opacity: 0.6;
